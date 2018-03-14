@@ -4,9 +4,9 @@ import android.content.Context;
 import android.net.Uri;
 import android.text.TextUtils;
 
+import com.benmu.framework.BMWXEnvironment;
 import com.benmu.framework.constant.Constant;
 import com.benmu.framework.manager.impl.FileManager;
-import com.benmu.wxbase.BMWXEnvironment;
 import com.bumptech.glide.DrawableTypeRequest;
 import com.bumptech.glide.Glide;
 import com.taobao.weex.WXEnvironment;

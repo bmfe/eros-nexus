@@ -1,6 +1,6 @@
 package com.benmu.framework.http;
 
-import com.benmu.wxbase.BMWXEnvironment;
+import com.benmu.framework.BMWXEnvironment;
 
 /**
  * Created by Carry on 2017/8/21.

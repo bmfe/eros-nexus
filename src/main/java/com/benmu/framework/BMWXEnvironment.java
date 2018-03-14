@@ -1,4 +1,4 @@
-package com.benmu.wxbase;
+package com.benmu.framework;
 
 import android.content.Context;
 
