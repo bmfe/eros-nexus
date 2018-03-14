@@ -7,6 +7,8 @@ package com.benmu.framework.manager;
 
 public abstract class Manager {
 
+    public void init(){
 
+    }
 
 }

@@ -1,5 +1,7 @@
 package com.benmu.framework.manager;
 
+import android.text.TextUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,4 +25,16 @@ public class ManagerFactory {
         return (T) mInstances.get(flag.getName());
     }
 
+    public static <T extends Manager> T getManagerService(String clazzName) {
+        if (TextUtils.isEmpty(clazzName)) throw new IllegalArgumentException("error flag");
+        if (mInstances.get(clazzName) == null) {
+            try {
+                Class instanse = Class.forName(clazzName);
+                mInstances.put(clazzName, (Manager) instanse.newInstance());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return (T) mInstances.get(clazzName);
+    }
 }
