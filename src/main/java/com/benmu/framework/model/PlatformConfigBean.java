@@ -137,7 +137,7 @@ public class PlatformConfigBean implements Serializable {
         private String jsServer;
         private String image;
         private String bundleUpdate;
-        private String debugServer;
+        private String socketServer;
 
         public String getRequest() {
             return request;
@@ -148,7 +148,7 @@ public class PlatformConfigBean implements Serializable {
         }
 
         public String getJsServer() {
-            return jsServer;
+            return TextUtils.isEmpty(jsServer) ? "http://app.weex-eros.com:8889" : jsServer;
         }
 
         public void setJsServer(String jsServer) {
@@ -171,12 +171,12 @@ public class PlatformConfigBean implements Serializable {
             this.bundleUpdate = bundleUpdate;
         }
 
-        public String getDebugServer() {
-            return debugServer;
+        public String getSocketServer() {
+            return socketServer;
         }
 
-        public void setDebugServer(String debugServer) {
-            this.debugServer = debugServer;
+        public void setSocketServer(String socketServer) {
+            this.socketServer = socketServer;
         }
     }
 

@@ -77,6 +77,7 @@ public class Constant {
         public static final String SP_DOWNLOAD_VERSION = "SP_DOWNLOAD_VERSION";
         public static final String SP_CID = "SP_CID";
         public static final String SP_INTERCEPTOR_ACTIVE = "SP_INTERCEPTOR_ACTIVE";
+        public static final String SP_HOTREFRESH_SWITCH = "SP_HOTREFRESH_SWITCH";
         public static final String SP_FONTSIZE = "SP_FONTSIZE";
         public static final String SP_APPCHANNEL = "SP_APPCHANNEL";
         public static final String SP_KEY_WH = "SP_KEY_WH";

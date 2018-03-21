@@ -78,6 +78,19 @@ public class SharePreferenceUtil {
         return null;
     }
 
+    public static boolean getHotRefreshSwitch(Context context){
+        if (context == null) return false;
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constant
+                .SP.SP_NATIVE_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getBoolean(Constant.SP.SP_HOTREFRESH_SWITCH, false);
+    }
+    public static void setHotRefreshSwitch(Context context, boolean isRefresh) {
+        if (context != null) {
+            SharedPreferences sharedPreferences = context.getSharedPreferences(Constant
+                    .SP.SP_NATIVE_NAME, Context.MODE_PRIVATE);
+            sharedPreferences.edit().putBoolean(Constant.SP.SP_HOTREFRESH_SWITCH, isRefresh).apply();
+        }
+    }
 
     public static String getInterceptorActive(Context context) {
         if (context != null) {
