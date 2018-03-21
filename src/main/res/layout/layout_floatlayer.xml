@@ -5,10 +5,10 @@
               android:layout_height="wrap_content">
 
     <TextView
-            android:layout_width="60dp"
+            android:layout_width="65dp"
             android:layout_height="60dp"
             android:background="@drawable/floatlayer_bg"
-            android:text="调试"
+            android:text="Debugger"
             android:gravity="center"
             android:textColor="#ffffff"
             />
