@@ -33,6 +33,13 @@ public class Constant {
 
     public static final String AMAP_KEY = "a3308e6aef150346915922d2ea292590";
 
+    // 自定义customer_componets
+    public static final String CUSTOMER_COMPONETS = "customer_componets";
+    // 自定义  customer_modules
+    public static final String CUSTOMER_MODULES = "customer_modules";
+
+
+
 
     /**
      * 通知相关
