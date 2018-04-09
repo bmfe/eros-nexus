@@ -2,6 +2,7 @@ package com.benmu.wxbase;
 
 import android.content.Context;
 
+import com.benmu.framework.model.WeexEventBean;
 import com.taobao.weex.bridge.JSCallback;
 
 /**
@@ -10,11 +11,12 @@ import com.taobao.weex.bridge.JSCallback;
  */
 
 public abstract class EventGate {
-    public void perform(Context context, String params, JSCallback jscallback) {
+
+    public void perform(Context context,WeexEventBean weexEventBean){
 
     }
 
-    public void perform(Context context, JSCallback jscallback) {
+    public void perform(Context context,WeexEventBean weexEventBean,String type){
 
     }
 }
