@@ -59,4 +59,7 @@ public class WXEventCenter {
     public static final String EVENT_IMAGE_PICK = "com.benmu.framework.event.camera.EventImage";
     public static final String EVENT_IMAGE_UPLOAD = "EVENT_IMAGE_UPLOAD";
     public static final String EVENT_NAV = "com.benmu.framework.event.router.EventNav";
+
+
+    public static final String EVENT_PUSHMANAGER = "EVENT_PUSHMANAGER";
 }

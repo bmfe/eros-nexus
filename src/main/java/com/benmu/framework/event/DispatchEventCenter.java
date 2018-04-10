@@ -8,11 +8,13 @@ import com.benmu.framework.adapter.router.RouterTracker;
 import com.benmu.framework.constant.WXEventCenter;
 import com.benmu.framework.manager.ManagerFactory;
 import com.benmu.framework.manager.impl.dispatcher.DispatchEventManager;
+import com.benmu.framework.model.BaseEventBean;
 import com.benmu.framework.model.WeexEventBean;
 import com.benmu.framework.utils.JsPoster;
 import com.benmu.wxbase.EventGate;
 import com.benmu.wxbase.EventGateFactory;
 import com.squareup.otto.Subscribe;
+import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.bridge.JSCallback;
 
 import java.util.ArrayList;
@@ -45,6 +47,11 @@ public class DispatchEventCenter {
             context = RouterTracker.peekActivity();
         }
         return context;
+    }
+
+    @Subscribe
+    public void onBaseEvent(BaseEventBean eventBean) {
+        reflectionClazzPerform(eventBean);
     }
 
     @Subscribe
@@ -121,6 +128,16 @@ public class DispatchEventCenter {
                 , context
                 , weexEventBean
                 , "", null);
+    }
+
+    private void reflectionClazzPerform(BaseEventBean eventBean) {
+        if (eventBean == null) return;
+        if (TextUtils.isEmpty(eventBean.clazzName)) return;
+        if (eventBean.context == null) return;
+        EventGate event = EventGateFactory.getEventGate(eventBean.clazzName);
+        if (null != event) {
+            event.perform(eventBean.context, eventBean);
+        }
     }
 
     private void reflectionClazzPerform(String clazzName, Context context, WeexEventBean weexEventBean, String errosMsg, String type) {
