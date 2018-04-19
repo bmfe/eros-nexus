@@ -10,7 +10,7 @@ public class WXEventCenter {
     public static final String EVENT_JS_OFF = "EVENT_JS_OFF";
     public static final String EVENT_JS_OFFALL = "EVENT_JS_OFFALL";
     public static final String EVENT_INSTANCE_DESTORY = "EVENT_INSTANCE_DESTORY";
-    public static final String EVENT_PAYBYWECHAT = "com.benmu.framework.event.pay.EventPay";
+    public static final String EVENT_PAYBYWECHAT = "com.benmu.erospluginwxpay.EventPay";
     public static final String EVENT_OPEN = "com.benmu.framework.event.router.EventOpen";
     public static final String EVENT_GETPARAMS = "com.benmu.framework.event.router.EventGetParams";
     public static final String EVENT_BACK = "com.benmu.framework.event.router.EventBack";
@@ -31,7 +31,7 @@ public class WXEventCenter {
     public static final String EVENT_RESIGNKEYBOARD = "EVENT_RESIGNKEYBOARD";
     public static final String EVENT_ISINSTALLWXAPP = "EVENT_ISINSTALLWXAPP";
     public static final String EVENT_GETCID = "EVENT_GETCID";
-    public static final String EVENT_WECHATLOGIN = "com.benmu.framework.event.auth.EventAuth";
+    public static final String EVENT_WECHATLOGIN = "com.benmu.erospluginumeng.event.EventAuth";
     public static final String EVENT_LEFTITEM = "com.benmu.framework.event.nav.EventLeftItem";
     public static final String EVENT_RIGHTITEM = "com.benmu.framework.event.nav.EventRightItem";
     public static final String EVENT_CENTERITEM = "com.benmu.framework.event.nav.EventCenterItem";

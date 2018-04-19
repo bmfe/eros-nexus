@@ -90,7 +90,7 @@ public class DispatchEventCenter {
             case WXEventCenter.EVENT_SHARE:
             case WXEventCenter.EVENT_RELAYTOFRIEND:
             case WXEventCenter.EVENT_RELAYTOCRICLE:
-                reflectionClazzPerform("com.benmu.framework.event.share.EventShare", context
+                reflectionClazzPerform("com.benmu.erospluginumeng.event.EventShare", context
                         , weexEventBean
                         , "", weexEventBean.getKey());
                 break;
