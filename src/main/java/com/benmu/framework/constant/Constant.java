@@ -31,7 +31,7 @@ public class Constant {
      */
     public static final String MAPVIEW_PARAMS = "MAPVIEW_PARAMS";
 
-    public static final String AMAP_KEY = "a3308e6aef150346915922d2ea292590";
+//    public static final String AMAP_KEY = "a3308e6aef150346915922d2ea292590";
 
     // 自定义customer_componets
     public static final String CUSTOMER_COMPONETS = "customer_componets";

@@ -401,6 +401,23 @@ public class BaseCommonUtil {
         return height;
     }
 
+
+    /**
+     * 获取Weex Pt 比例
+     * @param context
+     * @return
+     */
+    public static double defaultPixelScaleFactor(Context context) {
+        DisplayMetrics metric = new DisplayMetrics();
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        wm.getDefaultDisplay().getMetrics(metric);
+        int width = metric.widthPixels;     // 屏幕宽度（像素）
+        int height = metric.heightPixels;   // 屏幕高度（像素）
+        float density = metric.density;      // 屏幕密度（0.75 / 1.0 / 1.5）
+        int densityDpi = metric.densityDpi;  // 屏幕密度DPI（120 / 160 / 240）
+        return (width / density) / 750;
+    }
+
 //    public static String getDeviceId(Context context) {
 //        if (!PermissionManager.hasPermissions(context, Manifest.permission.READ_PHONE_STATE)) {
 //            return Md5Util.getMd5code("JYT_NO_ACCESS_READ_PHONE_STATE");
