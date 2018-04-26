@@ -39,8 +39,6 @@ public class Constant {
     public static final String CUSTOMER_MODULES = "customer_modules";
 
 
-
-
     /**
      * 通知相关
      */
@@ -203,12 +201,23 @@ public class Constant {
         public static final String BROWSE_IMG_BEAN = "browse_img_bean";
     }
 
+    public static String APPLICATION_ID;
 
-    public static final String BMPAGE_CATEGORY = BuildConfig.PAGE_PREFIX + ".categoty.page";
+    public static void setApplicationId(String appId) {
+        APPLICATION_ID = appId;
+    }
 
-    public static final String BMWEBVIEW_CATEGORY = BuildConfig.PAGE_PREFIX + ".category.web";
+    public static String getPageCategory() {
+        return APPLICATION_ID + ".categoty.page";
+    }
+//    public static String BMPAGE_CATEGORY =
 
-    public static final String BMDEBUG_CATEGORY = BuildConfig.PAGE_PREFIX + ".category.debug";
+    public static String getWebViewCategory() {
+        return APPLICATION_ID + ".category.web";
+    }
+
+
+//    public static String BMDEBUG_CATEGORY = APPLICATION_ID + ".category.debug";
 
 
     public static final class ACTIVITIES_ANIMATION {
