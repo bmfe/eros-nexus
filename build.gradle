@@ -23,6 +23,7 @@ android {
         abortOnError false
     }
 }
+def PROJECT_SUPPORTLIBV_NEXUS = "25.3.1"
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
@@ -30,9 +31,9 @@ dependencies {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
     testCompile 'junit:junit:4.12'
-    compile "com.android.support:appcompat-v7:${PROJECT_SUPPORTLIBVERSION}"
-    compile "com.android.support:support-v4:${PROJECT_SUPPORTLIBVERSION}"
-    compile "com.android.support:recyclerview-v7:${PROJECT_SUPPORTLIBVERSION}"
+    compile "com.android.support:appcompat-v7:${PROJECT_SUPPORTLIBV_NEXUS}"
+    compile "com.android.support:support-v4:${PROJECT_SUPPORTLIBV_NEXUS}"
+    compile "com.android.support:recyclerview-v7:${PROJECT_SUPPORTLIBV_NEXUS}"
     compile 'com.alibaba:fastjson:1.1.68.android'
     compile 'com.taobao.android:weex_sdk:0.18.0'
     compile 'com.squareup.okhttp:okhttp-ws:2.3.0'
