@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+group='myliuyx'
 
 buildscript {
     repositories {
@@ -37,7 +39,6 @@ android {
 def PROJECT_SUPPORTLIBV_NEXUS = "25.3.1"
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -47,6 +48,7 @@ dependencies {
     compile "com.android.support:recyclerview-v7:${PROJECT_SUPPORTLIBV_NEXUS}"
     compile 'com.alibaba:fastjson:1.1.68.android'
     compile 'com.taobao.android:weex_sdk:0.18.0'
+//    compile project(':sdk')
     compile 'com.squareup.okhttp:okhttp-ws:2.3.0'
     compile 'com.squareup.okhttp3:okhttp:3.3.1'
 //    compile files('libs/libammsdk.jar')
