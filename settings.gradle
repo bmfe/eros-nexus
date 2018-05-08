@@ -1,1 +1,1 @@
-include ':app',':nexus'
+include ':app',':nexus',':sdk'
