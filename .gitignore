@@ -1,6 +1,7 @@
 *.iml
 .gradle
 .idea
+nexus/build/
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
