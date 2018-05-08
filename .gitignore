@@ -1,1 +1,15 @@
+<<<<<<< HEAD
 /build
+=======
+*.iml
+.gradle
+.idea
+nexus/build/
+/local.properties
+/.idea/workspace.xml
+/.idea/libraries
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+>>>>>>> feature_pack
