@@ -62,7 +62,7 @@ public class WXWebView implements IWebView {
     @Override
     public View getView() {
         FrameLayout root = new FrameLayout(mContext);
-        root.setBackgroundColor(Color.WHITE);
+        root.setBackgroundColor(Color.TRANSPARENT);
 
         mWebView = new WebView(mContext);//mContext.getApplicationContext();
         FrameLayout.LayoutParams wvLayoutParams =
@@ -70,6 +70,7 @@ public class WXWebView implements IWebView {
                         FrameLayout.LayoutParams.MATCH_PARENT);
         wvLayoutParams.gravity = Gravity.CENTER;
         mWebView.setLayoutParams(wvLayoutParams);
+        mWebView.setBackgroundColor(0);
         root.addView(mWebView);
         initWebView(mWebView);
 
