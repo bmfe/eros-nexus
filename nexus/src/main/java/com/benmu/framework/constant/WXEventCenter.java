@@ -48,7 +48,7 @@ public class WXEventCenter {
     public static final String EVENT_MODAL_TOAST = "com.benmu.framework.event.modal.EventToast";
     public static final String EVENT_FETCH = "EVENT_FETCH";
     public static final String EVENT_GETREQUESTURL = "EVENT_GETREQUESTURL";
-    public static final String EVENT_NAVIGATIONINFO = "com.benmu.framework.event.nav.EventRightItem";
+    public static final String EVENT_NAVIGATIONINFO = "com.benmu.framework.event.nav.EventNavigationInfo";
     public static final String EVENT_COPYSTRING = "EVENT_COPYSTRING";
     public static final String EVENT_RELAYTOFRIEND = "EVENT_RELAYTOFRIEND";
     public static final String EVENT_RELAYTOCRICLE = "EVENT_RELAYTOCRICLE";
