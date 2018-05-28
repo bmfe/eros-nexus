@@ -13,7 +13,7 @@ public class Constant {
      * router参数
      */
     public static final String ROUTERPARAMS = "ROUTERPARAMS";
-
+    public static final String TABBAR = "tabBar";
 
     /**
      * 首页url

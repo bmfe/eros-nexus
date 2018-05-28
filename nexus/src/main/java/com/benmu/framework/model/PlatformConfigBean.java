@@ -9,6 +9,7 @@ import com.benmu.framework.manager.ManagerFactory;
 import com.benmu.framework.manager.StorageManager;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Carry on 2017/8/23.
@@ -23,6 +24,7 @@ public class PlatformConfigBean implements Serializable {
     private Wechat wechat;
     private Umeng umeng;
     private Amap amap;
+    private TabBar tabBar;
 
     public boolean isAndroidIsListenHomeBack() {
         return androidIsListenHomeBack;
@@ -86,6 +88,14 @@ public class PlatformConfigBean implements Serializable {
 
     public void setAppBoard(String appBoard) {
         this.appBoard = appBoard;
+    }
+
+    public TabBar getTabBar() {
+        return tabBar;
+    }
+
+    public void setTabBar(TabBar tabBar) {
+        this.tabBar = tabBar;
     }
 
     public class Page {
@@ -262,6 +272,94 @@ public class PlatformConfigBean implements Serializable {
 
         public boolean isAmapAvailable() {
             return enabled && !TextUtils.isEmpty(androidAppKey);
+        }
+    }
+
+
+    public static class TabBar{
+        private String color;
+        private String selectedColor;
+        private String backgroundColor;
+        private String borderColor;
+        private List<TabItem> list;
+
+        public String getColor() {
+            return color;
+        }
+
+        public void setColor(String color) {
+            this.color = color;
+        }
+
+        public String getSelectedColor() {
+            return selectedColor;
+        }
+
+        public void setSelectedColor(String selectedColor) {
+            this.selectedColor = selectedColor;
+        }
+
+        public String getBackgroundColor() {
+            return backgroundColor;
+        }
+
+        public void setBackgroundColor(String backgroundColor) {
+            this.backgroundColor = backgroundColor;
+        }
+
+        public String getBorderColor() {
+            return borderColor;
+        }
+
+        public void setBorderColor(String borderColor) {
+            this.borderColor = borderColor;
+        }
+
+        public List<TabItem> getList() {
+            return list;
+        }
+
+        public void setList(List<TabItem> list) {
+            this.list = list;
+        }
+    }
+
+    public static class TabItem{
+        private String pagePath;
+        private String text;
+        private String icon;
+        private String selectedIcon;
+
+        public String getPagePath() {
+            return pagePath;
+        }
+
+        public void setPagePath(String pagePath) {
+            this.pagePath = pagePath;
+        }
+
+        public String getText() {
+            return text;
+        }
+
+        public void setText(String text) {
+            this.text = text;
+        }
+
+        public String getIcon() {
+            return icon;
+        }
+
+        public void setIcon(String icon) {
+            this.icon = icon;
+        }
+
+        public String getSelectedIcon() {
+            return selectedIcon;
+        }
+
+        public void setSelectedIcon(String selectedIcon) {
+            this.selectedIcon = selectedIcon;
         }
     }
 

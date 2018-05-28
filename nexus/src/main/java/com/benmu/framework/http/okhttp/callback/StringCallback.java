@@ -9,10 +9,12 @@ import okhttp3.Response;
  */
 public abstract class StringCallback extends Callback<String> {
     public int code;
+    public Response response;
 
     @Override
     public String parseNetworkResponse(Response response, int id) throws IOException {
         code = response.code();
+        this.response = response;
         return response.body().string();
     }
 }
