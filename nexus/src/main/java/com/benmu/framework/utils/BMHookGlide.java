@@ -24,32 +24,16 @@ public class BMHookGlide {
 
     public static DrawableTypeRequest<String> load(Context context, String url) {
 
-        return Glide.with(context).load(handleResource(url));
+        return Glide.with(context).load(handleResource(context, url));
     }
 
-    private static String handleResource(String url) {
+    private static String handleResource(Context context, String url) {
         if (TextUtils.isEmpty(url)) return "";
         Uri imageUri = Uri.parse(url);
         if (LOCAL_SCHEME.equalsIgnoreCase(imageUri.getScheme())) {
-            return loadLocalImage(imageUri);
+            return BMWXEnvironment.loadBmLocal(context, imageUri);
         }
         return url;
     }
-
-    private static String loadLocalImage(Uri imageUri) {
-        if (Constant.INTERCEPTOR_ACTIVE.equalsIgnoreCase(SharePreferenceUtil.getInterceptorActive
-                (WXEnvironment.getApplication()))) {
-            String path = imageUri.getHost() + File.separator +
-                    imageUri.getPath();
-            return FileManager.getPathBundleDir(WXEnvironment.getApplication(), "bundle/"+path)
-                    .getAbsolutePath();
-
-        } else {
-            return String.format("%s/dist/%s%s", BMWXEnvironment.mPlatformConfig.getUrl()
-                    .getJsServer
-                            (), imageUri.getHost(), imageUri.getPath());
-        }
-    }
-
 
 }
