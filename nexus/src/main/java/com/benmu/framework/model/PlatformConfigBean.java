@@ -276,7 +276,7 @@ public class PlatformConfigBean implements Serializable {
     }
 
 
-    public static class TabBar{
+    public static class TabBar {
         private String color;
         private String selectedColor;
         private String backgroundColor;
@@ -324,11 +324,13 @@ public class PlatformConfigBean implements Serializable {
         }
     }
 
-    public static class TabItem{
+    public static class TabItem {
         private String pagePath;
         private String text;
         private String icon;
         private String selectedIcon;
+        private boolean navShow;
+        private String navTitle;
 
         public String getPagePath() {
             return pagePath;
@@ -360,6 +362,22 @@ public class PlatformConfigBean implements Serializable {
 
         public void setSelectedIcon(String selectedIcon) {
             this.selectedIcon = selectedIcon;
+        }
+
+        public boolean isNavShow() {
+            return navShow;
+        }
+
+        public void setNavShow(boolean navShow) {
+            this.navShow = navShow;
+        }
+
+        public String getNavTitle() {
+            return navTitle;
+        }
+
+        public void setNavTitle(String navTitle) {
+            this.navTitle = navTitle;
         }
     }
 
