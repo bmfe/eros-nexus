@@ -62,4 +62,7 @@ public class WXEventCenter {
 
 
     public static final String EVENT_PUSHMANAGER = "EVENT_PUSHMANAGER";
+    public static final String EVENT_TABBAR_SHOWBADGE = "EVENT_TABBAR_SHOWBADGE";
+    public static final String EVENT_TABBAR_HIDBADGE = "EVENT_TABBAR_HIDBADGE";
+    public static final String EVENT_TABBAR_OPENPAGE = "EVENT_TABBAR_OPENPAGE";
 }

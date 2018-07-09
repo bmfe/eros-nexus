@@ -95,6 +95,15 @@ public class DispatchEventCenter {
                         , "", weexEventBean.getKey());
                 break;
 
+
+            case WXEventCenter.EVENT_TABBAR_SHOWBADGE:
+            case WXEventCenter.EVENT_TABBAR_HIDBADGE:
+            case WXEventCenter.EVENT_TABBAR_OPENPAGE:
+                reflectionClazzPerform("com.benmu.framework.event.TabbarEvent", context
+                        , weexEventBean
+                        , "", weexEventBean.getKey());
+                break;
+
             case WXEventCenter.EVENT_COMMUNICATION_SMS:
             case WXEventCenter.EVENT_COMMUNICATION_CONTACTS:
                 reflectionClazzPerform("com.benmu.framework.event.EventCommunication", context
@@ -102,10 +111,6 @@ public class DispatchEventCenter {
                         , "", weexEventBean.getKey());
                 break;
 
-            //ToMap 不实现了。
-//            case WXEventCenter.EVENT_TOMAP:
-//                new EventToMap().toMap(params, context, weexEventBean.getJscallback());
-//                break;
             case WXEventCenter.EVENT_GEOLOCATION_GET:
                 reflectionClazzPerform(WXEventCenter.EVENT_GEOLOCATION_GET
                         , context

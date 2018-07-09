@@ -825,26 +825,26 @@ public class WXDomObject extends CSSNode implements Cloneable,ImmutableDomObject
    * if has update return true, else return false;
    * */
   private static boolean diffUpdates(Map<String,Object> updates, Map<String,Object> source){
-    if(updates == null){
-      return  false;
-    }
-    Set<Map.Entry<String,Object>> entries = updates.entrySet();
-    Iterator<Map.Entry<String,Object>> it = entries.iterator();
-    while (it.hasNext()){
-      Map.Entry<String,Object> entry =  it.next();
-      Object old = source.get(entry.getKey());
-      if(entry.getValue() == old){
-        it.remove();
-        continue;
-      }
-      if(old == null){
-        continue;
-      }
-      if(old.equals(entry.getValue())){
-        it.remove();
-        continue;
-      }
-    }
+//    if(updates == null){
+//      return  false;
+//    }
+//    Set<Map.Entry<String,Object>> entries = updates.entrySet();
+//    Iterator<Map.Entry<String,Object>> it = entries.iterator();
+//    while (it.hasNext()){
+//      Map.Entry<String,Object> entry =  it.next();
+//      Object old = source.get(entry.getKey());
+//      if(entry.getValue() == old){
+//        it.remove();
+//        continue;
+//      }
+//      if(old == null){
+//        continue;
+//      }
+//      if(old.equals(entry.getValue())){
+//        it.remove();
+//        continue;
+//      }
+//    }
     return updates.size() > 0;
   }
 
