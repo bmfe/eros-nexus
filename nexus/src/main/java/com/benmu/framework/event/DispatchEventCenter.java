@@ -68,7 +68,15 @@ public class DispatchEventCenter {
                         , "", weexEventBean.getKey());
                 break;
 
+            case WXEventCenter.EVENT_IMAGE_PICK:
+            case WXEventCenter.EVENT_IMAGE_SCAN:
+                reflectionClazzPerform("com.benmu.framework.event.camera.EventImage", context
+                        , weexEventBean
+                        , "", weexEventBean.getKey());
+                break;
+
             case WXEventCenter.EVENT_CAMERA_UPLOADIMAGE:
+            case WXEventCenter.EVENT_CAMERA_CHOOSEIMAGE:
             case WXEventCenter.EVENT_CAMERA_PATH:
             case WXEventCenter.EVENT_CAMERA:
                 reflectionClazzPerform("com.benmu.framework.event.camera.EventCamera", context
