@@ -107,6 +107,7 @@ public class DispatchEventCenter {
             case WXEventCenter.EVENT_TABBAR_SHOWBADGE:
             case WXEventCenter.EVENT_TABBAR_HIDBADGE:
             case WXEventCenter.EVENT_TABBAR_OPENPAGE:
+            case WXEventCenter.EVENT_TABBAR_SETTABBAR:
                 reflectionClazzPerform("com.benmu.framework.event.TabbarEvent", context
                         , weexEventBean
                         , "", weexEventBean.getKey());
