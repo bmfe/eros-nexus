@@ -168,6 +168,8 @@ public class Constant {
         public static final String CUSTOM_APPNAME = "appName";
 
         public static final String CUSTOM_REALDEVICEHEIGHT = "realDeviceHeight";
+
+        public static final String CUSTOM_TABBARHEIGHT = "tabbarHeight";
     }
 
 
