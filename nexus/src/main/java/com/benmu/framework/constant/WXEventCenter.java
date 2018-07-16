@@ -38,6 +38,7 @@ public class WXEventCenter {
     public static final String EVENT_BROWSERIMG = "com.benmu.framework.event.browse.EventBrowse";
     public static final String EVENT_CAMERA = "EVENT_CAMERA";
     public static final String EVENT_CAMERA_UPLOADIMAGE = "EVENT_CAMERA_UPLOADIMAGE";
+    public static final String EVENT_CAMERA_CHOOSEIMAGE = "EVENT_CAMERA_CHOOSEIMAGE";
     public static final String EVENT_CAMERA_PATH = "EVENT_CAMERA_PATH";
     public static final String EVENT_CAMERA_UPLOADSCREENSHOT = "EVENT_CAMERA_UPLOADSCREENSHOT";
     public static final String EVENT_GEOLOCATION_GET = "com.plugamap.EventGeo";
@@ -56,7 +57,8 @@ public class WXEventCenter {
     public static final String EVENT_COMMUNICATION_SMS = "EVENT_COMMUNICATION_SMS";
     public static final String EVENT_COMMUNICATION_CONTACTS = "EVENT_COMMUNICATION_CONTACTS";
     public static final String EVENT_SET_HOMEPAGE = "com.benmu.framework.event.router.EventSetHomePage";
-    public static final String EVENT_IMAGE_PICK = "com.benmu.framework.event.camera.EventImage";
+    public static final String EVENT_IMAGE_PICK = "EVENT_IMAGE_PICK";
+    public static final String EVENT_IMAGE_SCAN = "EVENT_IMAGE_SCAN";
     public static final String EVENT_IMAGE_UPLOAD = "EVENT_IMAGE_UPLOAD";
     public static final String EVENT_NAV = "com.benmu.framework.event.router.EventNav";
 
