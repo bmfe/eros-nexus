@@ -38,7 +38,6 @@ public class WXEventCenter {
     public static final String EVENT_BROWSERIMG = "com.benmu.framework.event.browse.EventBrowse";
     public static final String EVENT_CAMERA = "EVENT_CAMERA";
     public static final String EVENT_CAMERA_UPLOADIMAGE = "EVENT_CAMERA_UPLOADIMAGE";
-    public static final String EVENT_CAMERA_CHOOSEIMAGE = "EVENT_CAMERA_CHOOSEIMAGE";
     public static final String EVENT_CAMERA_PATH = "EVENT_CAMERA_PATH";
     public static final String EVENT_CAMERA_UPLOADSCREENSHOT = "EVENT_CAMERA_UPLOADSCREENSHOT";
     public static final String EVENT_GEOLOCATION_GET = "com.plugamap.EventGeo";
