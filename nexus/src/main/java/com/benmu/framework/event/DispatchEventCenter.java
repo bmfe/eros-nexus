@@ -76,7 +76,6 @@ public class DispatchEventCenter {
                 break;
 
             case WXEventCenter.EVENT_CAMERA_UPLOADIMAGE:
-            case WXEventCenter.EVENT_CAMERA_CHOOSEIMAGE:
             case WXEventCenter.EVENT_CAMERA_PATH:
             case WXEventCenter.EVENT_CAMERA:
                 reflectionClazzPerform("com.benmu.framework.event.camera.EventCamera", context
@@ -108,6 +107,8 @@ public class DispatchEventCenter {
             case WXEventCenter.EVENT_TABBAR_HIDBADGE:
             case WXEventCenter.EVENT_TABBAR_OPENPAGE:
             case WXEventCenter.EVENT_TABBAR_SETTABBAR:
+            case WXEventCenter.EVENT_TABBAR_WATCHINDEX:
+            case WXEventCenter.EVENT_TABBAR_CLEARTABBARINFO:
                 reflectionClazzPerform("com.benmu.framework.event.TabbarEvent", context
                         , weexEventBean
                         , "", weexEventBean.getKey());

@@ -67,4 +67,6 @@ public class WXEventCenter {
     public static final String EVENT_TABBAR_HIDBADGE = "EVENT_TABBAR_HIDBADGE";
     public static final String EVENT_TABBAR_OPENPAGE = "EVENT_TABBAR_OPENPAGE";
     public static final String EVENT_TABBAR_SETTABBAR = "EVENT_TABBAR_SETTABBAR";
+    public static final String EVENT_TABBAR_WATCHINDEX = "EVENT_TABBAR_WATCHINDEX";
+    public static final String EVENT_TABBAR_CLEARTABBARINFO = "EVENT_TABBAR_CLEARTABBARINFO";
 }
