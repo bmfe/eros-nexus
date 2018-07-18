@@ -25,6 +25,15 @@ public class PlatformConfigBean implements Serializable {
     private Umeng umeng;
     private Amap amap;
     private TabBar tabBar;
+    private boolean customBundleUpdate;
+
+    public boolean isCustomBundleUpdate() {
+        return customBundleUpdate;
+    }
+
+    public void setCustomBundleUpdate(boolean customBundleUpdate) {
+        this.customBundleUpdate = customBundleUpdate;
+    }
 
     public boolean isAndroidIsListenHomeBack() {
         return androidIsListenHomeBack;

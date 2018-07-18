@@ -14,7 +14,8 @@ public class WXEventCenter {
     public static final String EVENT_OPEN = "com.benmu.framework.event.router.EventOpen";
     public static final String EVENT_GETPARAMS = "com.benmu.framework.event.router.EventGetParams";
     public static final String EVENT_BACK = "com.benmu.framework.event.router.EventBack";
-    public static final String EVENT_GETBACKPARAMS = "com.benmu.framework.event.router.EventGetBackParams";
+    public static final String EVENT_GETBACKPARAMS = "com.benmu.framework.event.router" +
+            ".EventGetBackParams";
     public static final String EVENT_LOGINSUCCESS = "EVENT_LOGINSUCCESS";
     public static final String EVENT_REFRESH = "com.benmu.framework.event.router.EventRefresh";
     public static final String EVENT_FINISH = "com.benmu.framework.event.router.EventFinish";
@@ -26,8 +27,10 @@ public class WXEventCenter {
     public static final String EVENT_SHARE = "EVENT_SHARE";
     public static final String EVENT_SETDATA = "com.benmu.framework.event.shorage.EventSetData";
     public static final String EVENT_GETDATA = "com.benmu.framework.event.shorage.EventGetData";
-    public static final String EVENT_DELETEDATA = "com.benmu.framework.event.shorage.EventDeleteData";
-    public static final String EVENT_REMOVEDATA = "com.benmu.framework.event.shorage.EventRemoveData";
+    public static final String EVENT_DELETEDATA = "com.benmu.framework.event.shorage" +
+            ".EventDeleteData";
+    public static final String EVENT_REMOVEDATA = "com.benmu.framework.event.shorage" +
+            ".EventRemoveData";
     public static final String EVENT_RESIGNKEYBOARD = "EVENT_RESIGNKEYBOARD";
     public static final String EVENT_ISINSTALLWXAPP = "EVENT_ISINSTALLWXAPP";
     public static final String EVENT_GETCID = "EVENT_GETCID";
@@ -43,19 +46,24 @@ public class WXEventCenter {
     public static final String EVENT_GEOLOCATION_GET = "com.plugamap.EventGeo";
     public static final String EVENT_MODAL_ALERT = "com.benmu.framework.event.modal.EventAlert";
     public static final String EVENT_MODAL_CONFIRM = "com.benmu.framework.event.modal.EventConfirm";
-    public static final String EVENT_MODAL_SHOWLOADING = "com.benmu.framework.event.modal.EventShowLoading";
-    public static final String EVENT_MODAL_DISMISSLOADING = "com.benmu.framework.event.modal.EventDismissLoading";
+    public static final String EVENT_MODAL_SHOWLOADING = "com.benmu.framework.event.modal" +
+            ".EventShowLoading";
+    public static final String EVENT_MODAL_DISMISSLOADING = "com.benmu.framework.event.modal" +
+            ".EventDismissLoading";
     public static final String EVENT_MODAL_TOAST = "com.benmu.framework.event.modal.EventToast";
     public static final String EVENT_FETCH = "EVENT_FETCH";
     public static final String EVENT_GETREQUESTURL = "EVENT_GETREQUESTURL";
-    public static final String EVENT_NAVIGATIONINFO = "com.benmu.framework.event.nav.EventNavigationInfo";
+    public static final String EVENT_NAVIGATIONINFO = "com.benmu.framework.event.nav" +
+            ".EventNavigationInfo";
     public static final String EVENT_COPYSTRING = "EVENT_COPYSTRING";
     public static final String EVENT_RELAYTOFRIEND = "EVENT_RELAYTOFRIEND";
     public static final String EVENT_RELAYTOCRICLE = "EVENT_RELAYTOCRICLE";
-    public static final String EVENT_OPENBROWSER = "com.benmu.framework.event.router.EventOpenBrowser";
+    public static final String EVENT_OPENBROWSER = "com.benmu.framework.event.router" +
+            ".EventOpenBrowser";
     public static final String EVENT_COMMUNICATION_SMS = "EVENT_COMMUNICATION_SMS";
     public static final String EVENT_COMMUNICATION_CONTACTS = "EVENT_COMMUNICATION_CONTACTS";
-    public static final String EVENT_SET_HOMEPAGE = "com.benmu.framework.event.router.EventSetHomePage";
+    public static final String EVENT_SET_HOMEPAGE = "com.benmu.framework.event.router" +
+            ".EventSetHomePage";
     public static final String EVENT_IMAGE_PICK = "EVENT_IMAGE_PICK";
     public static final String EVENT_IMAGE_SCAN = "EVENT_IMAGE_SCAN";
     public static final String EVENT_IMAGE_UPLOAD = "EVENT_IMAGE_UPLOAD";
@@ -69,4 +77,7 @@ public class WXEventCenter {
     public static final String EVENT_TABBAR_SETTABBAR = "EVENT_TABBAR_SETTABBAR";
     public static final String EVENT_TABBAR_WATCHINDEX = "EVENT_TABBAR_WATCHINDEX";
     public static final String EVENT_TABBAR_CLEARTABBARINFO = "EVENT_TABBAR_CLEARTABBARINFO";
+
+    public static final String EVENT_DOWNLOAD_BUNDLE = "EVENT_DOWNLOAD_BUNDLE";
+    public static final String EVENT_UPDATE_BUNDLE = "EVENT_UPDATE_BUNDLE";
 }
