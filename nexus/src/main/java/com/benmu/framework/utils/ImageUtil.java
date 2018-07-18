@@ -78,11 +78,12 @@ public class ImageUtil {
             float heightScale = targetHeight / height;
             Matrix matrix = new Matrix();
             matrix.postScale(widthScale, heightScale);
-            Bitmap getBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height,
-                    matrix,
-                    true);
-            return getBitmap;
-
+            try {
+                Bitmap getBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height,
+                        matrix,
+                        true);
+                return getBitmap;
+            }catch (Exception ex){}
         }
         return null;
     }
