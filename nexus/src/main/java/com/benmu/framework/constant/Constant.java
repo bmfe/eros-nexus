@@ -85,6 +85,7 @@ public class Constant {
         public static final String SP_APPCHANNEL = "SP_APPCHANNEL";
         public static final String SP_KEY_WH = "SP_KEY_WH";
         public static final String SP_HOMEPAGE_URL = "SP_HOMEPAGE_URL";
+        public static final String SP_TABBAR_JSON = "SP_TABBAR_JSON";
     }
 
     /**
@@ -166,6 +167,8 @@ public class Constant {
         public static final String CUSTOM_APPNAME = "appName";
 
         public static final String CUSTOM_REALDEVICEHEIGHT = "realDeviceHeight";
+
+        public static final String CUSTOM_TABBARHEIGHT = "tabbarHeight";
     }
 
 

@@ -64,6 +64,13 @@ public class DispatchEventCenter {
                         , "", weexEventBean.getKey());
                 break;
 
+            case WXEventCenter.EVENT_IMAGE_PICK:
+            case WXEventCenter.EVENT_IMAGE_SCAN:
+                reflectionClazzPerform("com.benmu.framework.event.camera.EventImage", context
+                        , weexEventBean
+                        , "", weexEventBean.getKey());
+                break;
+
             case WXEventCenter.EVENT_CAMERA_UPLOADIMAGE:
             case WXEventCenter.EVENT_CAMERA_PATH:
             case WXEventCenter.EVENT_CAMERA:
@@ -91,6 +98,25 @@ public class DispatchEventCenter {
                         , "", weexEventBean.getKey());
                 break;
 
+
+            case WXEventCenter.EVENT_TABBAR_SHOWBADGE:
+            case WXEventCenter.EVENT_TABBAR_HIDBADGE:
+            case WXEventCenter.EVENT_TABBAR_OPENPAGE:
+            case WXEventCenter.EVENT_TABBAR_SETTABBAR:
+            case WXEventCenter.EVENT_TABBAR_WATCHINDEX:
+            case WXEventCenter.EVENT_TABBAR_CLEARTABBARINFO:
+            case WXEventCenter.EVENT_TABBAR_CLEARWATCH:
+                reflectionClazzPerform("com.benmu.framework.event.TabbarEvent", context
+                        , weexEventBean
+                        , "", weexEventBean.getKey());
+                break;
+
+            case WXEventCenter.EVENT_UPDATE_BUNDLE:
+            case WXEventCenter.EVENT_DOWNLOAD_BUNDLE:
+                reflectionClazzPerform("com.benmu.framework.event.UpdateJsBundleEvent", context
+                        , weexEventBean
+                        , "", weexEventBean.getKey());
+                break;
             case WXEventCenter.EVENT_COMMUNICATION_SMS:
             case WXEventCenter.EVENT_COMMUNICATION_CONTACTS:
                 reflectionClazzPerform("com.benmu.framework.event.EventCommunication", context
@@ -98,10 +124,6 @@ public class DispatchEventCenter {
                         , "", weexEventBean.getKey());
                 break;
 
-            //ToMap 不实现了。
-//            case WXEventCenter.EVENT_TOMAP:
-//                new EventToMap().toMap(params, context, weexEventBean.getJscallback());
-//                break;
             case WXEventCenter.EVENT_GEOLOCATION_GET:
                 reflectionClazzPerform(WXEventCenter.EVENT_GEOLOCATION_GET
                         , context
@@ -119,7 +141,8 @@ public class DispatchEventCenter {
     }
 
 
-    private void reflectionClazzPerform(String clazzName, Context context, WeexEventBean weexEventBean, String errosMsg) {
+    private void reflectionClazzPerform(String clazzName, Context context, WeexEventBean
+            weexEventBean, String errosMsg) {
         reflectionClazzPerform(weexEventBean.getKey()
                 , context
                 , weexEventBean
@@ -136,7 +159,8 @@ public class DispatchEventCenter {
         }
     }
 
-    private void reflectionClazzPerform(String clazzName, Context context, WeexEventBean weexEventBean, String errosMsg, String type) {
+    private void reflectionClazzPerform(String clazzName, Context context, WeexEventBean
+            weexEventBean, String errosMsg, String type) {
         EventGate event = EventGateFactory.getEventGate(clazzName);
         String params = weexEventBean.getJsParams();
         if (null != event) {
