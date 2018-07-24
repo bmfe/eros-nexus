@@ -20,4 +20,6 @@
     <string name="str_privilege_deny">权限拒绝</string>
     <string name="str_init_failed">初始化失败</string>
     <string name="str_ensure">确定</string>
+    <string name="str_cancel">取消</string>
+    <string name="str_error_ssl_cert_invalid">该站点安全证书无效，是否继续访问</string>
 </resources>
