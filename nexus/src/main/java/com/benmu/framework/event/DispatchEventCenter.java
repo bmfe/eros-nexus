@@ -109,6 +109,7 @@ public class DispatchEventCenter {
             case WXEventCenter.EVENT_TABBAR_SETTABBAR:
             case WXEventCenter.EVENT_TABBAR_WATCHINDEX:
             case WXEventCenter.EVENT_TABBAR_CLEARTABBARINFO:
+            case WXEventCenter.EVENT_TABBAR_CLEARWATCH:
                 reflectionClazzPerform("com.benmu.framework.event.TabbarEvent", context
                         , weexEventBean
                         , "", weexEventBean.getKey());
