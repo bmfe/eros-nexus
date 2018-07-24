@@ -169,4 +169,21 @@ public class ImageUtil {
 
     }
 
+
+    public static Bitmap zooImage(Context context, Bitmap bitmap, float scale) {
+        if (bitmap == null || bitmap.isRecycled()) return null;
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        if (width > 0 && height > 0) {
+            Matrix matrix = new Matrix();
+            matrix.postScale(scale, scale);
+            Bitmap getBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height,
+                    matrix,
+                    true);
+            return getBitmap;
+
+        }
+        return null;
+    }
+
 }

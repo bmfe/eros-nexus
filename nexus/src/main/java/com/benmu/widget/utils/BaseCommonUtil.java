@@ -418,6 +418,15 @@ public class BaseCommonUtil {
         return (width / density) / 750;
     }
 
+    /*
+    获取当前图片缩放比例  以density=2为基准
+   */
+    public static float getImageScale(Context context) {
+        float density = getScreenScale(context);
+        return density / 2;
+    }
+
+
 //    public static String getDeviceId(Context context) {
 //        if (!PermissionManager.hasPermissions(context, Manifest.permission.READ_PHONE_STATE)) {
 //            return Md5Util.getMd5code("JYT_NO_ACCESS_READ_PHONE_STATE");
