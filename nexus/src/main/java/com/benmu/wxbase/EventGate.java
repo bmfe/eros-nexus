@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.benmu.framework.model.BaseEventBean;
 import com.benmu.framework.model.WeexEventBean;
-import com.taobao.weex.bridge.JSCallback;
 
 /**
  *  事件抽象类

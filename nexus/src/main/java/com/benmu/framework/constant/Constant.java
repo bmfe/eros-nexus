@@ -1,8 +1,6 @@
 package com.benmu.framework.constant;
 
 
-import com.benmu.BuildConfig;
-
 /**
  * Created by Carry on 2017/8/7.
  */

@@ -14,10 +14,6 @@ import com.benmu.framework.utils.JsPoster;
 import com.benmu.wxbase.EventGate;
 import com.benmu.wxbase.EventGateFactory;
 import com.squareup.otto.Subscribe;
-import com.taobao.weex.WXSDKInstance;
-import com.taobao.weex.bridge.JSCallback;
-
-import java.util.ArrayList;
 
 /**
  * Created by Carry on 2017/8/23.
