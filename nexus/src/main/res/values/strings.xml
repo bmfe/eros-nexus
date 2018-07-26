@@ -7,7 +7,7 @@
     <string name="str_reload">网络出错，轻触重新加载</string>
     <string name="capture_qrcode_prompt">请将条码置于取景框内扫描</string>
 
-    <string name="str_update_title">功能升级</string>
+    <string name="str_update_title">更新提示</string>
     <string name="str_update_tips">升级数据已准备就绪，完成升级获得完整功能体验。</string>
     <string name="str_update_now">立即升级</string>
     <string name="str_update_later">稍后升级</string>
@@ -20,4 +20,6 @@
     <string name="str_privilege_deny">权限拒绝</string>
     <string name="str_init_failed">初始化失败</string>
     <string name="str_ensure">确定</string>
+    <string name="str_cancel">取消</string>
+    <string name="str_error_ssl_cert_invalid">该站点安全证书无效，是否继续访问</string>
 </resources>
