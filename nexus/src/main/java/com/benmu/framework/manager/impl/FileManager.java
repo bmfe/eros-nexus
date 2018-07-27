@@ -30,6 +30,7 @@ public class FileManager extends Manager{
     public static final String ICONFONT_DIR = JS_BUNDLE + "/bundle/iconfont";
     public static final String BASEJS_DIR = JS_BUNDLE + "/bundle/config";
     public static final String MEDIATOR_DIR = JS_BUNDLE + "/bundle/mediator";
+    public static final String REMOTE_DIR = JS_BUNDLE + "/bundle/remote";
 
     public static boolean isSDCardAvailable() {
         return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
@@ -96,6 +97,10 @@ public class FileManager extends Manager{
 
     public static File getTempBundleDir(Context context) {
         return getAppPath(JS_TEMP_REPERTORY, context);
+    }
+
+    public static File getRemoteDir(Context context) {
+        return getAppPath(REMOTE_DIR, context);
     }
 
 
