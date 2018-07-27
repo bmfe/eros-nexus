@@ -81,4 +81,6 @@ public class WXEventCenter {
 
     public static final String EVENT_DOWNLOAD_BUNDLE = "EVENT_DOWNLOAD_BUNDLE";
     public static final String EVENT_UPDATE_BUNDLE = "EVENT_UPDATE_BUNDLE";
+
+    public static final String EVENT_BAICHUAN = "EVENT_BAICHUAN";
 }
