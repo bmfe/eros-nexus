@@ -2,10 +2,13 @@ package com.benmu.framework;
 
 import android.content.Context;
 import android.net.Uri;
+import android.text.TextUtils;
+
 import com.benmu.framework.constant.Constant;
 import com.benmu.framework.manager.impl.FileManager;
 import com.benmu.framework.model.PlatformConfigBean;
 import com.benmu.framework.utils.SharePreferenceUtil;
+
 import java.io.File;
 import java.util.Map;
 
@@ -19,17 +22,21 @@ public class BMWXEnvironment {
     public static Map<String, String> mCustomer;
 
     public static String loadBmLocal(Context context, Uri uri) {
+        StringBuffer path = new StringBuffer();
+        path.append(uri.getHost()).append(uri.getPath());
+        if (!TextUtils.isEmpty(uri.getQuery())) {
+            path.append("?").append(uri.getQuery());
+        }
+
         if (Constant.INTERCEPTOR_ACTIVE.equalsIgnoreCase(SharePreferenceUtil.getInterceptorActive
                 (context))) {
-            String path = uri.getHost() + File.separator +
-                    uri.getPath();
-            return FileManager.getPathBundleDir(context, "bundle/" + path)
+            return FileManager.getPathBundleDir(context, "bundle/" + path.toString())
                     .getAbsolutePath();
 
         } else {
-            return String.format("%s/dist/%s%s", BMWXEnvironment.mPlatformConfig.getUrl()
+            return String.format("%s/dist/%s", BMWXEnvironment.mPlatformConfig.getUrl()
                     .getJsServer
-                            (), uri.getHost(), uri.getPath());
+                            (), path.toString());
         }
     }
 }
