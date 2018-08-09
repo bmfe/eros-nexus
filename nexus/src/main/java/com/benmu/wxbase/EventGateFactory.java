@@ -13,7 +13,7 @@ public class EventGateFactory {
             Class instanse = Class.forName(clazzName);
             return (EventGate) instanse.newInstance();
         } catch (Exception e) {
-            Log.e("EventGateFactory", "create " + clazzName + " failure~！");
+            Log.e("EventGateFactory", "create " + clazzName + " failure~~!");
         }
         return null;
     }
