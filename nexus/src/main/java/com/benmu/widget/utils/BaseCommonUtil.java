@@ -112,7 +112,7 @@ public class BaseCommonUtil {
         CookieSyncManager.getInstance().sync();
     }
 
-    public static String getTopActivity(Context context) {
+    public static String getTopActivityPageName(Context context) {
         String topActivityClassName = null;
         ActivityManager activityManager =
                 (ActivityManager) (context.getSystemService(Context
@@ -120,7 +120,7 @@ public class BaseCommonUtil {
         List<ActivityManager.RunningTaskInfo> runningTaskInfos = activityManager.getRunningTasks(1);
         if (runningTaskInfos != null && runningTaskInfos.size() > 0) {
             ComponentName f = runningTaskInfos.get(0).topActivity;
-            topActivityClassName = f.getClassName();
+            topActivityClassName = f.getPackageName();
         }
         return topActivityClassName;
     }
@@ -128,8 +128,8 @@ public class BaseCommonUtil {
     public static boolean isAPPRunningForeground(Context context) {
         if (context != null) {
             String packageName = context.getPackageName();
-            String topName = getTopActivity(context);
-            return packageName != null && topName != null && topName.startsWith(packageName);
+            String topName = getTopActivityPageName(context);
+            return packageName != null && topName != null && topName.equals(packageName);
         } else {
             return false;
         }
@@ -283,20 +283,21 @@ public class BaseCommonUtil {
 
     /**
      * bitmap着色
+     *
      * @param inBitmap
      * @param tintColor
      * @return
      */
-    public static Bitmap tintBitmap(Bitmap inBitmap , int tintColor) {
+    public static Bitmap tintBitmap(Bitmap inBitmap, int tintColor) {
         if (inBitmap == null) {
             return null;
         }
-        Bitmap outBitmap = Bitmap.createBitmap (inBitmap.getWidth(), inBitmap.getHeight() , inBitmap.getConfig());
+        Bitmap outBitmap = Bitmap.createBitmap(inBitmap.getWidth(), inBitmap.getHeight(), inBitmap.getConfig());
         Canvas canvas = new Canvas(outBitmap);
         Paint paint = new Paint();
-        paint.setColorFilter( new PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN)) ;
-        canvas.drawBitmap(inBitmap , 0, 0, paint) ;
-        return outBitmap ;
+        paint.setColorFilter(new PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(inBitmap, 0, 0, paint);
+        return outBitmap;
     }
 
     /**
@@ -390,10 +391,10 @@ public class BaseCommonUtil {
             Class c;
             c = Class.forName("android.view.Display");
             @SuppressWarnings("unchecked")
-            Method method = c.getMethod("getRealMetrics",DisplayMetrics.class);
+            Method method = c.getMethod("getRealMetrics", DisplayMetrics.class);
             method.invoke(display, dm);
             height = dm.heightPixels;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             height = context.getResources().getDisplayMetrics().heightPixels;
         }
@@ -404,6 +405,7 @@ public class BaseCommonUtil {
 
     /**
      * 获取Weex Pt 比例
+     *
      * @param context
      * @return
      */
