@@ -6,9 +6,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -201,24 +201,24 @@ public abstract class BaseBounceView<T extends View> extends FrameLayout {
             swipeLayout.setPullLoadEnable(enable);
     }
 
-  @Override
-  public void removeView(View view) {
-    if (view instanceof WXLoadingLayout) {
-      finishPullLoad();
-      setLoadmoreEnable(false);
-      if (swipeLayout != null) {
-        swipeLayout.removeView(swipeLayout.getFooterView());
-      }
-    } else if (view instanceof WXRefreshLayout) {
-      finishPullRefresh();
-      setRefreshEnable(false);
-      if (swipeLayout != null) {
-        swipeLayout.removeView(swipeLayout.getHeaderView());
-      }
-    } else {
-      super.removeView(view);
+    @Override
+    public void removeView(View view) {
+        if (view instanceof WXLoadingLayout) {
+            finishPullLoad();
+            setLoadmoreEnable(false);
+            if (swipeLayout != null) {
+                swipeLayout.removeView(swipeLayout.getFooterView());
+            }
+        } else if (view instanceof WXRefreshLayout) {
+            finishPullRefresh();
+            setRefreshEnable(false);
+            if (swipeLayout != null) {
+                swipeLayout.removeView(swipeLayout.getHeaderView());
+            }
+        } else {
+            super.removeView(view);
+        }
     }
-  }
 
     public WXSwipeLayout getSwipeLayout() {
         return swipeLayout;
@@ -230,6 +230,8 @@ public abstract class BaseBounceView<T extends View> extends FrameLayout {
 
     //benmu.org
 
+
+    // iCoastline 下拉加载更多
     public void setCustomHeaderView(View view){
         setRefreshEnable(true);
         swipeLayout.setRefreshHeight(WXViewUtils.dip2px(40));
@@ -237,4 +239,11 @@ public abstract class BaseBounceView<T extends View> extends FrameLayout {
     }
 
     //benmu.org
+
+    public void setCustomFootView(View view){
+        setLoadmoreEnable(true);
+        swipeLayout.setLoadingHeight(WXViewUtils.dip2px(40));
+        swipeLayout.getFooterView().setRefreshView(view);
+    }
+
 }

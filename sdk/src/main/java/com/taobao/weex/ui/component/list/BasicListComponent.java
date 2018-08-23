@@ -6,9 +6,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -89,7 +89,7 @@ import java.util.regex.Pattern;
  */
 
 public abstract class BasicListComponent<T extends ViewGroup & ListComponentView> extends WXVContainer<T> implements
-    IRecyclerAdapterListener<ListBaseViewHolder>, IOnLoadMoreListener, Scrollable {
+        IRecyclerAdapterListener<ListBaseViewHolder>, IOnLoadMoreListener, Scrollable {
   public static final String TRANSFORM = "transform";
   public static final String LOADMOREOFFSET = "loadmoreoffset";
   private String TAG = "BasicListComponent";
@@ -186,9 +186,9 @@ public abstract class BasicListComponent<T extends ViewGroup & ListComponentView
       return;
     }
     if(WXUtils.getBoolean(getDomObject().getAttrs().get("prefetchGapDisable"), false)){
-        if(recyclerView.getLayoutManager() != null){
-           recyclerView.getLayoutManager().setItemPrefetchEnabled(false);
-        }
+      if(recyclerView.getLayoutManager() != null){
+        recyclerView.getLayoutManager().setItemPrefetchEnabled(false);
+      }
     }
 
     if (mChildren == null) {
@@ -472,7 +472,7 @@ public abstract class BasicListComponent<T extends ViewGroup & ListComponentView
         @Override
         public void run() {
           if(mAppearComponentsRunnable != null) {
-             notifyAppearStateChange(0, 0, 0, 0);
+            notifyAppearStateChange(0, 0, 0, 0);
           }
         }
       };
@@ -560,67 +560,67 @@ public abstract class BasicListComponent<T extends ViewGroup & ListComponentView
       stickyComponent = entry.getValue();
 
       if (stickyComponent != null && stickyComponent.getDomObject() != null
-          && stickyComponent instanceof WXCell) {
+              && stickyComponent instanceof WXCell) {
 
-          WXCell cell = (WXCell) stickyComponent;
-          if (cell.getHostView() == null) {
-            return;
-          }
-
-          int[] location = new int[2];
-          stickyComponent.getHostView().getLocationOnScreen(location);
-          int[] parentLocation = new int[2];
-          stickyComponent.getParentScroller().getView().getLocationOnScreen(parentLocation);
-          int top = location[1] - parentLocation[1];
-
-
-          RecyclerView.LayoutManager layoutManager;
-          boolean beforeFirstVisibleItem = false;
-          boolean removeOldSticky = false;
-          layoutManager = getHostView().getInnerView().getLayoutManager();
-          if (layoutManager instanceof LinearLayoutManager || layoutManager instanceof GridLayoutManager) {
-            int firstVisiblePosition = ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
-            int lastVisiblePosition = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
-            int pos = mChildren.indexOf(cell);
-            cell.setScrollPositon(pos);
-            if (pos <= firstVisiblePosition
-                    || (cell.getStickyOffset() > 0 && firstVisiblePosition < pos && pos <= lastVisiblePosition  &&
-                    top <= cell.getStickyOffset())) {
-              beforeFirstVisibleItem = true;
-              if(pos > currentStickyPos) {
-                currentStickyPos = pos;
-              }
-            }else{
-              removeOldSticky = true;
-            }
-          } else if(layoutManager instanceof StaggeredGridLayoutManager){
-            int [] firstItems= new int[3];
-            int firstVisiblePosition = ((StaggeredGridLayoutManager) layoutManager).findFirstVisibleItemPositions(firstItems)[0];
-            int lastVisiblePosition = ((StaggeredGridLayoutManager)  layoutManager).findLastVisibleItemPositions(firstItems)[0];
-            int pos = mChildren.indexOf(cell);
-
-            if (pos <= firstVisiblePosition || (cell.getStickyOffset() > 0 && firstVisiblePosition < pos && pos <= lastVisiblePosition  &&
-                    top <= cell.getStickyOffset())) {
-              beforeFirstVisibleItem = true;
-            }else{
-              removeOldSticky = true;
-            }
-          }
-
-
-          boolean showSticky = beforeFirstVisibleItem && cell.getLocationFromStart() >= 0 && top <= cell.getStickyOffset() && dy >= 0;
-          boolean removeSticky = cell.getLocationFromStart() <= cell.getStickyOffset() && top > cell.getStickyOffset() && dy <= 0;
-          if (showSticky) {
-            bounceRecyclerView.notifyStickyShow(cell);
-          } else if (removeSticky || removeOldSticky) {
-            bounceRecyclerView.notifyStickyRemove(cell);
-          }
-          cell.setLocationFromStart(top);
+        WXCell cell = (WXCell) stickyComponent;
+        if (cell.getHostView() == null) {
+          return;
         }
+
+        int[] location = new int[2];
+        stickyComponent.getHostView().getLocationOnScreen(location);
+        int[] parentLocation = new int[2];
+        stickyComponent.getParentScroller().getView().getLocationOnScreen(parentLocation);
+        int top = location[1] - parentLocation[1];
+
+
+        RecyclerView.LayoutManager layoutManager;
+        boolean beforeFirstVisibleItem = false;
+        boolean removeOldSticky = false;
+        layoutManager = getHostView().getInnerView().getLayoutManager();
+        if (layoutManager instanceof LinearLayoutManager || layoutManager instanceof GridLayoutManager) {
+          int firstVisiblePosition = ((LinearLayoutManager) layoutManager).findFirstVisibleItemPosition();
+          int lastVisiblePosition = ((LinearLayoutManager) layoutManager).findLastVisibleItemPosition();
+          int pos = mChildren.indexOf(cell);
+          cell.setScrollPositon(pos);
+          if (pos <= firstVisiblePosition
+                  || (cell.getStickyOffset() > 0 && firstVisiblePosition < pos && pos <= lastVisiblePosition  &&
+                  top <= cell.getStickyOffset())) {
+            beforeFirstVisibleItem = true;
+            if(pos > currentStickyPos) {
+              currentStickyPos = pos;
+            }
+          }else{
+            removeOldSticky = true;
+          }
+        } else if(layoutManager instanceof StaggeredGridLayoutManager){
+          int [] firstItems= new int[3];
+          int firstVisiblePosition = ((StaggeredGridLayoutManager) layoutManager).findFirstVisibleItemPositions(firstItems)[0];
+          int lastVisiblePosition = ((StaggeredGridLayoutManager)  layoutManager).findLastVisibleItemPositions(firstItems)[0];
+          int pos = mChildren.indexOf(cell);
+
+          if (pos <= firstVisiblePosition || (cell.getStickyOffset() > 0 && firstVisiblePosition < pos && pos <= lastVisiblePosition  &&
+                  top <= cell.getStickyOffset())) {
+            beforeFirstVisibleItem = true;
+          }else{
+            removeOldSticky = true;
+          }
+        }
+
+
+        boolean showSticky = beforeFirstVisibleItem && cell.getLocationFromStart() >= 0 && top <= cell.getStickyOffset() && dy >= 0;
+        boolean removeSticky = cell.getLocationFromStart() <= cell.getStickyOffset() && top > cell.getStickyOffset() && dy <= 0;
+        if (showSticky) {
+          bounceRecyclerView.notifyStickyShow(cell);
+        } else if (removeSticky || removeOldSticky) {
+          bounceRecyclerView.notifyStickyRemove(cell);
+        }
+        cell.setLocationFromStart(top);
+      }
     }
 
     if(currentStickyPos >= 0){
-        bounceRecyclerView.updateStickyView(currentStickyPos);
+      bounceRecyclerView.updateStickyView(currentStickyPos);
     }else{
       if(bounceRecyclerView instanceof BounceRecyclerView){
         ((BounceRecyclerView) bounceRecyclerView).getStickyHeaderHelper().clearStickyHeaders();
@@ -693,50 +693,50 @@ public abstract class BasicListComponent<T extends ViewGroup & ListComponentView
       if (child.getDomObject() != null) {
         Object attr = child.getDomObject().getAttrs().get(Constants.Name.KEEP_SCROLL_POSITION);
         if (WXUtils.getBoolean(attr, false) && index <= getChildCount() && index>-1) {
-            isKeepScrollPosition = true;
+          isKeepScrollPosition = true;
         }
       }
       if (isKeepScrollPosition) {
         if(view.getInnerView().getLayoutManager() instanceof  LinearLayoutManager){
-            if(!view.getInnerView().isLayoutFrozen()){ //frozen, prevent layout when scroll
-                view.getInnerView().setLayoutFrozen(true);
+          if(!view.getInnerView().isLayoutFrozen()){ //frozen, prevent layout when scroll
+            view.getInnerView().setLayoutFrozen(true);
+          }
+          if(keepPositionCell == null){
+            int last=((LinearLayoutManager)view.getInnerView().getLayoutManager()).findLastCompletelyVisibleItemPosition();
+            ListBaseViewHolder holder = (ListBaseViewHolder) view.getInnerView().findViewHolderForAdapterPosition(last);
+            if(holder != null){
+              keepPositionCell = holder.getComponent();
             }
-            if(keepPositionCell == null){
-              int last=((LinearLayoutManager)view.getInnerView().getLayoutManager()).findLastCompletelyVisibleItemPosition();
-              ListBaseViewHolder holder = (ListBaseViewHolder) view.getInnerView().findViewHolderForAdapterPosition(last);
-              if(holder != null){
-                 keepPositionCell = holder.getComponent();
+            if(keepPositionCell != null) {
+              if(keepPositionCellRunnable != null){
+                view.removeCallbacks(keepPositionCellRunnable);
               }
-              if(keepPositionCell != null) {
-                if(keepPositionCellRunnable != null){
-                  view.removeCallbacks(keepPositionCellRunnable);
-                }
-                keepPositionCellRunnable = new Runnable() {
-                  @Override
-                  public void run() {
-                    if(keepPositionCell != null){
-                      int keepPosition = indexOf(keepPositionCell);
-                      int offset = 0;
-                      if(keepPositionCell.getHostView() != null){
-                        offset = keepPositionCell.getHostView().getTop();
-                      }
-                      if(offset > 0) {
-                        ((LinearLayoutManager) view.getInnerView().getLayoutManager()).scrollToPositionWithOffset(keepPosition, offset);
-                      }else{
-                        view.getInnerView().getLayoutManager().scrollToPosition(keepPosition);
-
-                      }
-                      view.getInnerView().setLayoutFrozen(false);
-                      keepPositionCell = null;
-                      keepPositionCellRunnable = null;
+              keepPositionCellRunnable = new Runnable() {
+                @Override
+                public void run() {
+                  if(keepPositionCell != null){
+                    int keepPosition = indexOf(keepPositionCell);
+                    int offset = 0;
+                    if(keepPositionCell.getHostView() != null){
+                      offset = keepPositionCell.getHostView().getTop();
                     }
+                    if(offset > 0) {
+                      ((LinearLayoutManager) view.getInnerView().getLayoutManager()).scrollToPositionWithOffset(keepPosition, offset);
+                    }else{
+                      view.getInnerView().getLayoutManager().scrollToPosition(keepPosition);
+
+                    }
+                    view.getInnerView().setLayoutFrozen(false);
+                    keepPositionCell = null;
+                    keepPositionCellRunnable = null;
                   }
-                };
-              }
+                }
+              };
             }
-            if(keepPositionCellRunnable == null){
-               view.getInnerView().scrollToPosition(((LinearLayoutManager)view.getInnerView().getLayoutManager()).findLastVisibleItemPosition());
-            }
+          }
+          if(keepPositionCellRunnable == null){
+            view.getInnerView().scrollToPosition(((LinearLayoutManager)view.getInnerView().getLayoutManager()).findLastVisibleItemPosition());
+          }
         }
         view.getRecyclerViewBaseAdapter().notifyItemInserted(adapterPosition);
         if(keepPositionCellRunnable != null){
@@ -838,9 +838,9 @@ public abstract class BasicListComponent<T extends ViewGroup & ListComponentView
 
     holder.setComponentUsing(false);
     if (holder != null
-        && holder.canRecycled()
-        && holder.getComponent() != null
-        && !holder.getComponent().isUsing()) {
+            && holder.canRecycled()
+            && holder.getComponent() != null
+            && !holder.getComponent().isUsing()) {
       holder.recycled();
 
     } else {
@@ -863,10 +863,10 @@ public abstract class BasicListComponent<T extends ViewGroup & ListComponentView
     holder.setComponentUsing(true);
     WXComponent component = getChild(position);
     if (component == null
-        || (component instanceof WXRefresh)
-        || (component instanceof WXLoading)
-        || (component.getDomObject() != null && component.getDomObject().isFixed())
-        ) {
+            || (component instanceof WXRefresh)
+            || (component instanceof WXLoading)
+            || (component.getDomObject() != null && component.getDomObject().isFixed())
+            ) {
       if (WXEnvironment.isApkDebugable()) {
         WXLogUtils.d(TAG, "Bind WXRefresh & WXLoading " + holder);
       }
@@ -874,11 +874,11 @@ public abstract class BasicListComponent<T extends ViewGroup & ListComponentView
               && holder.getView() != null
               && component.getDomObject() != null
               && (component.getDomObject().getAttrs().get("holderBackground") != null)){
-         Object holderBackground = component.getDomObject().getAttrs().get("holderBackground");
+        Object holderBackground = component.getDomObject().getAttrs().get("holderBackground");
         int color = WXResourceUtils.getColor(holderBackground.toString(), Color.WHITE);
-         holder.getView().setBackgroundColor(color);
-         holder.getView().setVisibility(View.VISIBLE);
-         holder.getView().postInvalidate();
+        holder.getView().setBackgroundColor(color);
+        holder.getView().setVisibility(View.VISIBLE);
+        holder.getView().postInvalidate();
       }
       return;
     }
@@ -896,8 +896,8 @@ public abstract class BasicListComponent<T extends ViewGroup & ListComponentView
       WXCell cell = (WXCell) holder.getComponent();
       boolean isExcluded = DEFAULT_EXCLUDED;
       if(cell.getDomObject() != null){
-         WXAttr cellAttrs = cell.getDomObject().getAttrs();
-         isExcluded = WXUtils.getBoolean(cellAttrs.get(EXCLUDED), DEFAULT_EXCLUDED);
+        WXAttr cellAttrs = cell.getDomObject().getAttrs();
+        isExcluded = WXUtils.getBoolean(cellAttrs.get(EXCLUDED), DEFAULT_EXCLUDED);
       }
 
       mDragHelper.setDragExcluded(holder, isExcluded);
@@ -963,7 +963,7 @@ public abstract class BasicListComponent<T extends ViewGroup & ListComponentView
       for (int i = 0; i < mTypes.size(); i++) {
         WXComponent component = mTypes.get(i);
         if (component == null
-            || component.isUsing()) {
+                || component.isUsing()) {
           continue;
         }
         if (component.getDomObject() != null && component.getDomObject().isFixed()) {
@@ -1196,7 +1196,7 @@ public abstract class BasicListComponent<T extends ViewGroup & ListComponentView
       if (offScreenY <= offsetParsed) {
 
         if (mListCellCount != mChildren.size()
-            || mForceLoadmoreNextTime) {
+                || mForceLoadmoreNextTime) {
           fireEvent(Constants.Event.LOADMORE);
           mListCellCount = mChildren.size();
           mForceLoadmoreNextTime = false;
@@ -1210,13 +1210,13 @@ public abstract class BasicListComponent<T extends ViewGroup & ListComponentView
   @Override
   public void notifyAppearStateChange(int firstVisible, int lastVisible, int directionX, int directionY) {
     if(mAppearComponentsRunnable != null) {
-       getHostView().removeCallbacks(mAppearComponentsRunnable);
-       mAppearComponentsRunnable = null;
+      getHostView().removeCallbacks(mAppearComponentsRunnable);
+      mAppearComponentsRunnable = null;
     }
     //notify appear state
     Iterator<AppearanceHelper> it = mAppearComponents.values().iterator();
     String direction = directionY > 0 ? Constants.Value.DIRECTION_UP :
-        directionY < 0 ? Constants.Value.DIRECTION_DOWN : null;
+            directionY < 0 ? Constants.Value.DIRECTION_DOWN : null;
     if (getOrientation() == Constants.Orientation.HORIZONTAL && directionX != 0) {
       direction = directionX > 0 ? Constants.Value.DIRECTION_LEFT : Constants.Value.DIRECTION_RIGHT;
     }
@@ -1438,7 +1438,7 @@ public abstract class BasicListComponent<T extends ViewGroup & ListComponentView
 
   public ScrollStartEndHelper getScrollStartEndHelper() {
     if(mScrollStartEndHelper == null){
-       mScrollStartEndHelper = new ScrollStartEndHelper(this);
+      mScrollStartEndHelper = new ScrollStartEndHelper(this);
     }
     return mScrollStartEndHelper;
   }
@@ -1456,4 +1456,14 @@ public abstract class BasicListComponent<T extends ViewGroup & ListComponentView
   }
 
   //benmu.org
+
+  protected boolean mAddCustomLoadMore = false;
+
+  @WXComponentProp(name =Constants.Name.SHOW_LOADMORE)
+  public void setLoadMore(String showLoadMore) {
+    this.mAddCustomLoadMore = WXUtils.getBoolean(showLoadMore,false);
+  }
+
+  public void addCustomLoadMore() {
+  }
 }
