@@ -230,11 +230,13 @@ public class Constants {
     String NEST_SCROLLING_ENABLED = "nestedScrollingEnabled";
 
     /**
-       * 本木自定义   是否显示下拉刷新
-       */
+     * 本木自定义   是否显示下拉刷新
+     */
 
-      String SHOW_REFRESH = "showRefresh";
-      String TINTCOLOR = "tintColor";
+    String SHOW_REFRESH = "showRefresh";
+    String TINTCOLOR = "tintColor";
+
+    String SHOW_LOADMORE = "showLoadMore";
   }
 
   public interface Value {
@@ -303,6 +305,7 @@ public class Constants {
     String PAGEFINISH = "pagefinish";
     String PAGESTART = "pagestart";
     String ONREFRESH = "refresh";
+    String ONLOADMORE = "loadMore";
     String ONLOADING = "loading";
     String ONLOAD = "load";
     String CHANGE = "change";
