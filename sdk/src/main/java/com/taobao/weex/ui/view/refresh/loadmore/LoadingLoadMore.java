@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 
+import com.taobao.weappplus_sdk.R;
 import com.taobao.weex.common.Constants;
 import com.taobao.weex.ui.component.WXComponent;
 import com.taobao.weex.ui.view.refresh.wrapper.BounceRecyclerView;
