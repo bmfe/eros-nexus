@@ -1,5 +1,6 @@
 package com.benmu.widget.utils;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ClipData;
@@ -10,6 +11,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -26,6 +28,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
+import android.view.ViewConfiguration;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.CookieManager;
@@ -112,7 +115,7 @@ public class BaseCommonUtil {
         CookieSyncManager.getInstance().sync();
     }
 
-    public static String getTopActivity(Context context) {
+    public static String getTopActivityPageName(Context context) {
         String topActivityClassName = null;
         ActivityManager activityManager =
                 (ActivityManager) (context.getSystemService(Context
@@ -120,7 +123,7 @@ public class BaseCommonUtil {
         List<ActivityManager.RunningTaskInfo> runningTaskInfos = activityManager.getRunningTasks(1);
         if (runningTaskInfos != null && runningTaskInfos.size() > 0) {
             ComponentName f = runningTaskInfos.get(0).topActivity;
-            topActivityClassName = f.getClassName();
+            topActivityClassName = f.getPackageName();
         }
         return topActivityClassName;
     }
@@ -128,8 +131,8 @@ public class BaseCommonUtil {
     public static boolean isAPPRunningForeground(Context context) {
         if (context != null) {
             String packageName = context.getPackageName();
-            String topName = getTopActivity(context);
-            return packageName != null && topName != null && topName.startsWith(packageName);
+            String topName = getTopActivityPageName(context);
+            return packageName != null && topName != null && topName.equals(packageName);
         } else {
             return false;
         }
@@ -283,20 +286,21 @@ public class BaseCommonUtil {
 
     /**
      * bitmap着色
+     *
      * @param inBitmap
      * @param tintColor
      * @return
      */
-    public static Bitmap tintBitmap(Bitmap inBitmap , int tintColor) {
+    public static Bitmap tintBitmap(Bitmap inBitmap, int tintColor) {
         if (inBitmap == null) {
             return null;
         }
-        Bitmap outBitmap = Bitmap.createBitmap (inBitmap.getWidth(), inBitmap.getHeight() , inBitmap.getConfig());
+        Bitmap outBitmap = Bitmap.createBitmap(inBitmap.getWidth(), inBitmap.getHeight(), inBitmap.getConfig());
         Canvas canvas = new Canvas(outBitmap);
         Paint paint = new Paint();
-        paint.setColorFilter( new PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN)) ;
-        canvas.drawBitmap(inBitmap , 0, 0, paint) ;
-        return outBitmap ;
+        paint.setColorFilter(new PorterDuffColorFilter(tintColor, PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(inBitmap, 0, 0, paint);
+        return outBitmap;
     }
 
     /**
@@ -390,10 +394,10 @@ public class BaseCommonUtil {
             Class c;
             c = Class.forName("android.view.Display");
             @SuppressWarnings("unchecked")
-            Method method = c.getMethod("getRealMetrics",DisplayMetrics.class);
+            Method method = c.getMethod("getRealMetrics", DisplayMetrics.class);
             method.invoke(display, dm);
             height = dm.heightPixels;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             height = context.getResources().getDisplayMetrics().heightPixels;
         }
@@ -404,6 +408,7 @@ public class BaseCommonUtil {
 
     /**
      * 获取Weex Pt 比例
+     *
      * @param context
      * @return
      */
@@ -426,6 +431,62 @@ public class BaseCommonUtil {
         return density / 2;
     }
 
+
+    public static int getNavigationBarHeight(Context context) {
+        int result = 0;
+        if (hasNavBar(context)) {
+            Resources res = context.getResources();
+            int resourceId = res.getIdentifier("navigation_bar_height", "dimen", "android");
+            if (resourceId > 0) {
+                result = res.getDimensionPixelSize(resourceId);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * 检查是否存在虚拟按键栏
+     *
+     * @param context
+     * @return
+     */
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    public static boolean hasNavBar(Context context) {
+        Resources res = context.getResources();
+        int resourceId = res.getIdentifier("config_showNavigationBar", "bool", "android");
+        if (resourceId != 0) {
+            boolean hasNav = res.getBoolean(resourceId);
+            // check override flag
+            String sNavBarOverride = getNavBarOverride();
+            if ("1".equals(sNavBarOverride)) {
+                hasNav = false;
+            } else if ("0".equals(sNavBarOverride)) {
+                hasNav = true;
+            }
+            return hasNav;
+        } else { // fallback
+            return !ViewConfiguration.get(context).hasPermanentMenuKey();
+        }
+    }
+
+    /**
+     * 判断虚拟按键栏是否重写
+     *
+     * @return
+     */
+    private static String getNavBarOverride() {
+        String sNavBarOverride = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            try {
+                Class c = Class.forName("android.os.SystemProperties");
+                Method m = c.getDeclaredMethod("get", String.class);
+                m.setAccessible(true);
+                sNavBarOverride = (String) m.invoke(null, "qemu.hw.mainkeys");
+            } catch (Throwable e) {
+            }
+        }
+        return sNavBarOverride;
+    }
 
 //    public static String getDeviceId(Context context) {
 //        if (!PermissionManager.hasPermissions(context, Manifest.permission.READ_PHONE_STATE)) {

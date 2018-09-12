@@ -36,7 +36,7 @@ public class SharePreferenceUtil {
         if (context != null) {
             SharedPreferences sharedPreferences = context.getSharedPreferences(Constant
                     .SP.SP_NATIVE_NAME, Context.MODE_PRIVATE);
-            sharedPreferences.edit().putString(Constant.SP.SP_DOWNLOAD_VERSION, version).apply();
+            sharedPreferences.edit().putString(Constant.SP.SP_DOWNLOAD_VERSION, version).commit();
         }
     }
 

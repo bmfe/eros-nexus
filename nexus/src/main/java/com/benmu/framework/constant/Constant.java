@@ -163,6 +163,8 @@ public class Constant {
         //deviceWidth
         public static final String CUSTOM_DEVICEWIDTH = "deviceWidth";
 
+        public static final String CUSTOM_VIRTUAL_BUTTONS_HEIGHT = "virtualButtonsHeight";
+
         //appName
         public static final String CUSTOM_APPNAME = "appName";
 

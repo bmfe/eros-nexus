@@ -6,9 +6,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -40,6 +40,8 @@ import com.taobao.weex.ui.view.listview.WXRecyclerView;
 import com.taobao.weex.ui.view.listview.adapter.ListBaseViewHolder;
 import com.taobao.weex.ui.view.refresh.bmrefresh.BMBaseRefresh;
 import com.taobao.weex.ui.view.refresh.bmrefresh.BMLoadingRefresh;
+import com.taobao.weex.ui.view.refresh.loadmore.BaseLoadMore;
+import com.taobao.weex.ui.view.refresh.loadmore.LoadingLoadMore;
 import com.taobao.weex.ui.view.refresh.wrapper.BounceRecyclerView;
 import com.taobao.weex.utils.WXUtils;
 
@@ -87,7 +89,7 @@ public class WXListComponent extends BasicListComponent<BounceRecyclerView> {
     BounceRecyclerView bounceRecyclerView = new BounceRecyclerView(context,mLayoutType,mColumnCount,mColumnGap,orientation);
     if(bounceRecyclerView.getSwipeLayout()  != null){
       if(WXUtils.getBoolean(getDomObject().getAttrs().get(Constants.Name.NEST_SCROLLING_ENABLED), false)) {
-          bounceRecyclerView.getSwipeLayout().setNestedScrollingEnabled(true);
+        bounceRecyclerView.getSwipeLayout().setNestedScrollingEnabled(true);
       }
     }
     return  bounceRecyclerView;
@@ -101,8 +103,8 @@ public class WXListComponent extends BasicListComponent<BounceRecyclerView> {
     }
 
     if (child instanceof WXRefresh && getHostView() != null) {
-        getHostView().setOnRefreshListener((WXRefresh) child);
-        getHostView().postDelayed(WXThread.secure(new Runnable() {
+      getHostView().setOnRefreshListener((WXRefresh) child);
+      getHostView().postDelayed(WXThread.secure(new Runnable() {
         @Override
         public void run() {
           getHostView().setHeaderView(child);
@@ -111,8 +113,8 @@ public class WXListComponent extends BasicListComponent<BounceRecyclerView> {
     }
 
     if (child instanceof WXLoading && getHostView() != null) {
-        getHostView().setOnLoadingListener((WXLoading) child);
-        getHostView().postDelayed(WXThread.secure(new Runnable() {
+      getHostView().setOnLoadingListener((WXLoading) child);
+      getHostView().postDelayed(WXThread.secure(new Runnable() {
         @Override
         public void run() {
           getHostView().setFooterView(child);
@@ -122,6 +124,7 @@ public class WXListComponent extends BasicListComponent<BounceRecyclerView> {
 
     //benmu.org
     addCustomRefresh();
+    addCustomLoadMore();    // iCoastline 下拉加载更多
     //benmu.org
     // Synchronize DomObject's attr to Component and Native View
     if(mRecyclerDom != null && getHostView() != null && (mColumnWidth != mRecyclerDom.getColumnWidth() ||
@@ -262,4 +265,27 @@ public class WXListComponent extends BasicListComponent<BounceRecyclerView> {
     }
   }
   //benmu.org
+
+
+  private BaseLoadMore mLoadMore;
+
+  @Override
+  public void addCustomLoadMore() {    // iCoastline 下拉加载更多
+    if (!mAddCustomLoadMore || mLoadMore != null) return;
+    mLoadMore = new LoadingLoadMore(getContext(), this);
+    getHostView().setOnLoadingListener(mLoadMore);
+    getHostView().postDelayed(new Runnable() {
+      @Override
+      public void run() {
+        getHostView().setCustomFootView(mLoadMore);
+      }
+    }, 100);
+  }
+
+  @JSMethod
+  public void loadMoreEnd() {    // iCoastline 下拉加载更多
+    if (mLoadMore != null && mBMRefresh.mCurrentState == BaseLoadMore.STATE_REFRESHING) {
+      mLoadMore.onLoadmoreComplete();
+    }
+  }
 }
