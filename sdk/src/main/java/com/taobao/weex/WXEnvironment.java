@@ -122,7 +122,7 @@ public class WXEnvironment {
       options.put(WXConfig.scale, Float.toString(sApplication.getResources().getDisplayMetrics().density));
     }catch (NullPointerException e){
       //There is little chance of NullPointerException as sApplication may be null.
-      WXLogUtils.e("WXEnvironment scale Exception: ", e);
+//      WXLogUtils.e("WXEnvironment scale Exception: ", e);
     }
     configs.putAll(options);
     if(configs!=null&&configs.get(WXConfig.appName)==null && sApplication!=null){
@@ -143,7 +143,7 @@ public class WXEnvironment {
       info = manager.getPackageInfo(sApplication.getPackageName(), 0);
       versionName = info.versionName;
     } catch (Exception e) {
-      WXLogUtils.e("WXEnvironment getAppVersionName Exception: ", e);
+//      WXLogUtils.e("WXEnvironment getAppVersionName Exception: ", e);
     }
     return versionName;
   }
@@ -157,7 +157,7 @@ public class WXEnvironment {
     try {
       cache = sApplication.getApplicationContext().getCacheDir().getPath();
     } catch (Exception e) {
-      WXLogUtils.e("WXEnvironment getAppCacheFile Exception: ", e);
+//      WXLogUtils.e("WXEnvironment getAppCacheFile Exception: ", e);
     }
     return cache;
   }
