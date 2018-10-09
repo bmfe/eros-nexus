@@ -10,7 +10,7 @@
             android:id="@+id/rv_items"
             />
 
-    <com.benmu.widget.view.BMReceiverTextView
+    <com.eros.widget.view.BMReceiverTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/rv_items"

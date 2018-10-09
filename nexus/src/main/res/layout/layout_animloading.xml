@@ -23,7 +23,7 @@
                 android:gravity="center"
                 />
 
-        <com.benmu.widget.view.MaterialCircleView
+        <com.eros.widget.view.MaterialCircleView
                 android:layout_width="43dp"
                 android:layout_height="43dp"
                 app:bGradient="false"

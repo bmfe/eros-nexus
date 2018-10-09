@@ -29,7 +29,7 @@
             android:scaleType="centerInside"
             android:visibility="gone" />
 
-        <com.benmu.widget.view.loading.SVCircleProgressBar
+        <com.eros.widget.view.loading.SVCircleProgressBar
             android:id="@+id/circleProgressBar"
             android:layout_width="@dimen/size_image_smallloading"
             android:layout_height="@dimen/size_image_smallloading"
