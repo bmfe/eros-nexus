@@ -6,9 +6,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- * 
+ *
  *   http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -19,12 +19,11 @@
 package com.taobao.weex.bridge;
 
 import java.io.Serializable;
-import java.util.Map;
 
 /**
  * Created by sospartan on 5/24/16.
  */
-public interface JSCallback extends Serializable{
+public interface JSCallback extends Serializable {
   /**
    * invoke javascript callback method, this method will destoryed after invoke.
    * @param data

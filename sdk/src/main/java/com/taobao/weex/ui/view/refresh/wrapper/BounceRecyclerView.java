@@ -6,9 +6,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- *
+ * 
  *   http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -20,7 +20,6 @@ package com.taobao.weex.ui.view.refresh.wrapper;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.OrientationHelper;
 import android.view.MotionEvent;
 
 import com.taobao.weex.ui.component.list.ListComponentView;
@@ -30,7 +29,6 @@ import com.taobao.weex.ui.view.gesture.WXGesture;
 import com.taobao.weex.ui.view.gesture.WXGestureObservable;
 import com.taobao.weex.ui.view.listview.WXRecyclerView;
 import com.taobao.weex.ui.view.listview.adapter.RecyclerViewBaseAdapter;
-
 
 public class BounceRecyclerView extends BaseBounceView<WXRecyclerView> implements ListComponentView,WXGestureObservable {
 
@@ -76,19 +74,12 @@ public class BounceRecyclerView extends BaseBounceView<WXRecyclerView> implement
     return result;
   }
 
-  // icoastline 添加橡皮筋效果
   @Override
   public WXRecyclerView setInnerView(Context context) {
     WXRecyclerView wxRecyclerView = new WXRecyclerView(context);
     wxRecyclerView.initView(context, mLayoutType,mColumnCount,mColumnGap,getOrientation());
-//        if(getOrientation() == OrientationHelper.VERTICAL){
-//            OverScrollDecoratorHelper.setUpOverScroll(wxRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
-//        }else{
-//            OverScrollDecoratorHelper.setUpOverScroll(wxRecyclerView, OverScrollDecoratorHelper.ORIENTATION_VERTICAL);
-//        }
     return wxRecyclerView;
   }
-
 
   @Override
   public void onRefreshingComplete() {
@@ -133,5 +124,10 @@ public class BounceRecyclerView extends BaseBounceView<WXRecyclerView> implement
   public void registerGestureListener(@Nullable WXGesture wxGesture) {
     mGesture = wxGesture;
     getInnerView().registerGestureListener(wxGesture);
+  }
+
+  @Override
+  public WXGesture getGestureListener() {
+    return mGesture;
   }
 }

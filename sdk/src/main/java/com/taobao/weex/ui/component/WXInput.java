@@ -6,9 +6,9 @@
  * to you under the Apache License, Version 2.0 (the
  * "License"); you may not use this file except in compliance
  * with the License.  You may obtain a copy of the License at
- *
+ * 
  *   http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
  * Unless required by applicable law or agreed to in writing,
  * software distributed under the License is distributed on an
  * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
@@ -18,11 +18,9 @@
  */
 package com.taobao.weex.ui.component;
 
-import android.graphics.Color;
-
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.annotation.Component;
-import com.taobao.weex.dom.WXDomObject;
+import com.taobao.weex.ui.action.BasicComponentData;
 import com.taobao.weex.ui.view.WXEditText;
 
 /**
@@ -33,23 +31,17 @@ import com.taobao.weex.ui.view.WXEditText;
 public class WXInput extends AbstractEditComponent{
 
   @Deprecated
-  public WXInput(WXSDKInstance instance, WXDomObject dom, WXVContainer parent, String instanceId, boolean isLazy) {
-    this(instance,dom,parent,isLazy);
+  public WXInput(WXSDKInstance instance, WXVContainer parent, String instanceId, boolean isLazy, BasicComponentData basicComponentData) {
+    this(instance, parent, isLazy, basicComponentData);
   }
 
-  public WXInput(WXSDKInstance instance, WXDomObject dom, WXVContainer parent, boolean isLazy) {
-    super(instance, dom, parent, isLazy);
+  public WXInput(WXSDKInstance instance, WXVContainer parent, boolean isLazy, BasicComponentData basicComponentData) {
+    super(instance, parent, isLazy, basicComponentData);
   }
 
   @Override
   protected void appleStyleAfterCreated(WXEditText editText) {
     super.appleStyleAfterCreated(editText);
-    editText.setTextColor(Color.BLACK);
     editText.setSingleLine();//default use single line , same to ios
-  }
-
-  @Override
-  protected MeasureOutput measure(int width, int height) {
-    return super.measure(width, height);
   }
 }

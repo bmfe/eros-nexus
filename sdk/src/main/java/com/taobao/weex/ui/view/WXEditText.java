@@ -55,6 +55,11 @@ public class WXEditText extends EditText implements WXGestureObservable {
   }
 
   @Override
+  public WXGesture getGestureListener() {
+    return wxGesture;
+  }
+
+  @Override
   public void setLines(int lines) {
     super.setLines(lines);
     mLines = lines;
@@ -107,14 +112,12 @@ public class WXEditText extends EditText implements WXGestureObservable {
     mAllowCopyPaste = allow;
     if (allow) {
       setLongClickable(true);
-      setTextIsSelectable(true);
       setCustomSelectionActionModeCallback(null);
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         setCustomInsertionActionModeCallback(null);
       }
     } else {
       setLongClickable(false);
-      setTextIsSelectable(false);
       ActionMode.Callback callback = new ActionMode.Callback() {
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {

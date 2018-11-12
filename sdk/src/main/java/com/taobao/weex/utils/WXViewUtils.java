@@ -42,7 +42,9 @@ import com.taobao.weex.WXEnvironment;
 import com.taobao.weex.WXSDKInstance;
 import com.taobao.weex.WXSDKManager;
 import com.taobao.weex.common.Constants;
+import com.taobao.weex.common.WXErrorCode;
 import com.taobao.weex.common.WXRuntimeException;
+import com.taobao.weex.ui.component.WXComponent;
 import com.taobao.weex.ui.flat.widget.Widget;
 import com.taobao.weex.ui.flat.widget.WidgetGroup;
 import com.taobao.weex.ui.view.border.BorderDrawable;
@@ -79,6 +81,7 @@ public class WXViewUtils {
 
   public static final int DIMENSION_UNSET = -1;
   private static final boolean mUseWebPx = false;
+
   private static final AtomicInteger sNextGeneratedId = new AtomicInteger(1);
 
   @SuppressLint("NewApi")
@@ -141,7 +144,7 @@ public class WXViewUtils {
 
   @Deprecated
   public static int setScreenWidth(int screenWidth) {
-     return mScreenWidth = screenWidth;
+    return mScreenWidth = screenWidth;
   }
 
   public static float getScreenDensity(Context ctx){
@@ -180,12 +183,18 @@ public class WXViewUtils {
 
   public static int getScreenHeight(Context cxt) {
     if(cxt!=null){
-       mScreenHeight =cxt.getResources().getDisplayMetrics().heightPixels;
+      Resources res = cxt.getResources();
+      mScreenHeight =cxt.getResources().getDisplayMetrics().heightPixels;
+      if(WXEnvironment.SETTING_FORCE_VERTICAL_SCREEN){
+        mScreenWidth = res
+                .getDisplayMetrics()
+                .widthPixels;
+        mScreenHeight = mScreenHeight > mScreenWidth ? mScreenHeight : mScreenWidth;
+      }
     } else if (WXEnvironment.isApkDebugable()){
       throw new WXRuntimeException("Error Context is null When getScreenHeight");
     }
     return mScreenHeight;
-
   }
 
   /**
@@ -199,7 +208,7 @@ public class WXViewUtils {
 
   @Deprecated
   public static float getRealPxByWidth(float pxValue) {
-     return getRealPxByWidth(pxValue,750);
+    return getRealPxByWidth(pxValue,750);
   }
   public static float getRealPxByWidth(float pxValue,int customViewport) {
     if (Float.isNaN(pxValue)) {
@@ -297,7 +306,7 @@ public class WXViewUtils {
     float scale = 2;
     try {
       scale = WXEnvironment.getApplication().getResources()
-          .getDisplayMetrics().density;
+              .getDisplayMetrics().density;
     } catch (Exception e) {
       WXLogUtils.e("[WXViewUtils] dip2px:", e);
     }
@@ -321,7 +330,7 @@ public class WXViewUtils {
     }
 
     return (p[1] > 0 && (p[1] - WXViewUtils.getScreenHeight(WXEnvironment.sApplication) < 0))
-           || (viewH + p[1] > 0 && p[1] <= 0);
+            || (viewH + p[1] > 0 && p[1] <= 0);
   }
 
   /**
@@ -357,12 +366,22 @@ public class WXViewUtils {
   }
 
   @SuppressWarnings("deprecation")
-  public static void setBackGround(View view, Drawable drawable){
+  public static void setBackGround(View view, Drawable drawable, WXComponent component) {
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN){
       view.setBackgroundDrawable(drawable);
     }
     else{
-      view.setBackground(drawable);
+      try {
+        view.setBackground(drawable);
+      } catch (Exception e) {
+        if (component == null)
+          return;
+        WXExceptionUtils.commitCriticalExceptionRT(component.getInstanceId(),
+                WXErrorCode.WX_RENDER_ERR_TEXTURE_SETBACKGROUND,
+                component.getComponentType() + " setBackGround for android view",
+                WXErrorCode.WX_RENDER_ERR_TEXTURE_SETBACKGROUND.getErrorMsg() + ": TextureView doesn't support displaying a background drawable!",
+                null);
+      }
     }
   }
 
@@ -386,13 +405,13 @@ public class WXViewUtils {
   public static void clipCanvasWithinBorderBox(View targetView, Canvas canvas) {
     Drawable drawable;
     if (clipCanvasDueToAndroidVersion(canvas) &&
-        clipCanvasIfAnimationExist(targetView) &&
-        ((drawable = targetView.getBackground()) instanceof BorderDrawable)) {
+            clipCanvasIfAnimationExist(targetView) &&
+            ((drawable = targetView.getBackground()) instanceof BorderDrawable)) {
       BorderDrawable borderDrawable = (BorderDrawable) drawable;
       if (borderDrawable.isRounded()) {
         if (clipCanvasIfBackgroundImageExist(targetView, borderDrawable)) {
           Path path = borderDrawable.getContentPath(
-              new RectF(0, 0, targetView.getWidth(), targetView.getHeight()));
+                  new RectF(0, 0, targetView.getWidth(), targetView.getHeight()));
           canvas.clipPath(path);
         }
       }
@@ -402,12 +421,12 @@ public class WXViewUtils {
   public static void clipCanvasWithinBorderBox(Widget widget, Canvas canvas) {
     BorderDrawable borderDrawable;
     if (clipCanvasDueToAndroidVersion(canvas) &&
-        clipCanvasIfAnimationExist(null) &&
-        (borderDrawable=widget.getBackgroundAndBorder())!=null ) {
+            clipCanvasIfAnimationExist(null) &&
+            (borderDrawable=widget.getBackgroundAndBorder())!=null ) {
       if (borderDrawable.isRounded() && clipCanvasIfBackgroundImageExist(widget, borderDrawable)) {
-          Path path = borderDrawable.getContentPath(
-              new RectF(0, 0, widget.getBorderBox().width(), widget.getBorderBox().height()));
-          canvas.clipPath(path);
+        Path path = borderDrawable.getContentPath(
+                new RectF(0, 0, widget.getBorderBox().width(), widget.getBorderBox().height()));
+        canvas.clipPath(path);
       }
       else {
         canvas.clipRect(widget.getBorderBox());
@@ -423,7 +442,7 @@ public class WXViewUtils {
    */
   private static boolean clipCanvasDueToAndroidVersion(Canvas canvas) {
     return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2 ||
-           !canvas.isHardwareAccelerated();
+            !canvas.isHardwareAccelerated();
   }
 
   /**
@@ -458,8 +477,8 @@ public class WXViewUtils {
       for (int i = 0; i < count; i++) {
         child = parent.getChildAt(i);
         if (child.getBackground() instanceof BorderDrawable &&
-            ((BorderDrawable) child.getBackground()).hasImage() &&
-            Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                ((BorderDrawable) child.getBackground()).hasImage() &&
+                Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
           return false;
         }
       }
@@ -468,18 +487,17 @@ public class WXViewUtils {
   }
 
   private static boolean clipCanvasIfBackgroundImageExist(@NonNull Widget widget,
-      @NonNull BorderDrawable borderDrawable) {
+                                                          @NonNull BorderDrawable borderDrawable) {
     if (widget instanceof WidgetGroup) {
       for (Widget child : ((WidgetGroup) widget).getChildren()) {
         if (child.getBackgroundAndBorder().hasImage() &&
-            Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+                Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
           return false;
         }
       }
     }
     return true;
   }
-
 
   /**
    * 获取Weex Pt 比例
