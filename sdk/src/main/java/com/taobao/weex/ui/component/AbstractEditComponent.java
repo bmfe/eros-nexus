@@ -21,6 +21,7 @@ package com.taobao.weex.ui.component;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.text.Editable;
@@ -495,6 +496,9 @@ public abstract class AbstractEditComponent extends WXComponent<WXEditText> {
         mType = type;
         ((EditText) getHostView()).setInputType(getInputType(mType));
         switch (mType) {
+            case Constants.Value.PASSWORD:
+                getHostView().setTypeface(Typeface.DEFAULT);
+                break;
             case Constants.Value.DATE:
             case Constants.Value.TIME:
                 applyOnClickListener();
