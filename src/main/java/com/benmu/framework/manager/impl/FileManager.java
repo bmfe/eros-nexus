@@ -174,22 +174,25 @@ public class FileManager extends Manager{
 
     }
 
-    public static byte[] extractZip(File zipFile, String entryName) {
+    public static String extractZip(File zipFile, String entryName) {
         ZipFile zf = null;
         ZipEntry ze = null;
-        byte[] buffer = null;
+        StringBuffer result = new StringBuffer();
         try {
             zf = new ZipFile(zipFile);
             ze = zf.getEntry(entryName);
             InputStream in = zf.getInputStream(ze);
-            int size = in.available();
-            buffer = new byte[size];
-            in.read(buffer);
-            in.close();
+            BufferedReader br = new BufferedReader(new InputStreamReader(in));
+            String line;
+
+            while ((line = br.readLine()) != null) {
+                result.append(line + "\n");
+            }
+            System.out.println(result);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return buffer;
+        return result.toString();
     }
 
 
