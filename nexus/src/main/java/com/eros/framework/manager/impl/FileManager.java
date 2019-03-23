@@ -6,6 +6,7 @@ import android.os.Environment;
 import com.eros.framework.manager.Manager;
 import com.eros.framework.utils.ZipUtil;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -17,7 +18,7 @@ import java.util.zip.ZipFile;
  * Created by Carry on 2017/8/7.
  */
 
-public class FileManager extends Manager{
+public class FileManager extends Manager {
     public static final String BASE_DIR = "benmu";
     public static final String BUNDLE_NAME = "bundle.zip";
     public static final String TEMP_BUNDLE_NAME = "temp_pages.zip";
@@ -175,21 +176,25 @@ public class FileManager extends Manager{
     }
 
     public static byte[] extractZip(File zipFile, String entryName) {
-        ZipFile zf = null;
-        ZipEntry ze = null;
-        byte[] buffer = null;
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
         try {
-            zf = new ZipFile(zipFile);
-            ze = zf.getEntry(entryName);
+            ZipFile zf = new ZipFile(zipFile);
+            ZipEntry ze = zf.getEntry(entryName);
+
             InputStream in = zf.getInputStream(ze);
-            int size = in.available();
-            buffer = new byte[size];
-            in.read(buffer);
+            byte[] byteBuff = new byte[1024];
+            int bytesRead = 0;
+            while ((bytesRead = in.read(byteBuff)) != -1) {
+                bos.write(byteBuff, 0, bytesRead);
+            }
+
             in.close();
+            bos.close();
+            return bos.toByteArray();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return buffer;
+        return null;
     }
 
 
