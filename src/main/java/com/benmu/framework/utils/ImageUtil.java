@@ -95,7 +95,7 @@ public class ImageUtil {
      * @param newWidth 前端指定的压缩宽,传递0,按照原图压缩，如果原图大于最大上线828,按照828比例压缩。
      */
     public static String zoomImage(Context context, Bitmap bitmap, int newWidth, int
-            biggestWidth, String filename) {
+            biggestWidth, int rotateDegree, String filename) {
 
         int width = bitmap.getWidth();
         int height = bitmap.getHeight();
@@ -110,6 +110,9 @@ public class ImageUtil {
         float scaleWidth = ((float) newWidth) / width;
         Matrix matrix = new Matrix();
         matrix.postScale(scaleWidth, scaleWidth);
+        if(rotateDegree != 0){
+            matrix.postRotate(rotateDegree); //修复EXIF旋转BUG
+        }
         Bitmap newBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height, matrix, true);
 
         return saveBitmap(newBitmap, filename, context);
