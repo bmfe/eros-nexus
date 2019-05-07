@@ -191,8 +191,35 @@ public class FileManager extends Manager{
         }
         return buffer;
     }
+    //用于读取md5文件过大的方法
+    public static String extractZip2(File zipFile, String entryName) {
+        ZipFile zf = null;
+        ZipEntry ze = null;
+        BufferedReader reader = null;
+        StringBuilder sb = new StringBuilder();
+        try {
+            zf = new ZipFile(zipFile);
+            ze = zf.getEntry(entryName);
+            InputStream in = zf.getInputStream(ze);
 
-
+            reader = new BufferedReader(new InputStreamReader(in));
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                sb.append(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                reader.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return sb.toString();
+    }
+    
+    
     public static void clearDir(File dir) {
         if (dir.isFile()) {
             dir.delete();
